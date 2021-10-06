@@ -15,3 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+mix.copyDirectory('resources/views/male-shop', 'public/male-shop');
