@@ -16,7 +16,7 @@ class Size extends Model
     /* n - n */
     public function products ()
     {
-        return $this->belongsToMany(Product::class)->using(ProductSize::class);
+        return $this->belongsToMany(Product::class)->using(ProductColorSize::class);
     }
 
     

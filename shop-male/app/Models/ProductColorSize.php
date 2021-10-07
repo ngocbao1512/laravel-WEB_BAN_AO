@@ -4,27 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProductSize extends Pivot
+class ProductColorSize extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'product_id',
+        'color_id',
         'size_id',
         'quantity',
     ];
 
     /* n - 1 */
-
     public function product ()
     {
-        return $this->belongsto(Product::class);
+        return $this->belongsTo(Product::class);
+    }
+
+    public function color ()
+    {
+        return $this->belongsTo(Color::class);
     }
 
     public function size ()
     {
-        return $this->belongsto(Size::class);
+        return $this->belongsTo(Size::class);
     }
 }
