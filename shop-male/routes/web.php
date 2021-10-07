@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home-page', function () {
-    return view('my-directory.home-page');
+    return view('home-page');
 });
 Route::get('/shop', function () {
     return view('my-directory.shop');
@@ -43,4 +43,6 @@ Route::get('/blog-details', function () {
 Route::get('/contact', function () {
     return view('my-directory.contact');
 });
-
+Route::get('/admin', function () {
+    return view('my-admin.home-page');
+});
