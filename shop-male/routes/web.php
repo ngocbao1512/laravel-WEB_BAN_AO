@@ -43,4 +43,7 @@ Route::get('/blog-details', function () {
 Route::get('/contact', function () {
     return view('my-directory.contact');
 });
+Route::get('/home-admin', function () {
+    return view('my-admin.home-admin');
+});
 

@@ -1,7 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "/css/app.css": "/css/app.css",
     "/male-shop/about.html": "/male-shop/about.html",
     "/male-shop/blog-details.html": "/male-shop/blog-details.html",
@@ -13,11 +11,29 @@
     "/male-shop/readme.txt": "/male-shop/readme.txt",
     "/male-shop/shop-details.html": "/male-shop/shop-details.html",
     "/male-shop/shop.html": "/male-shop/shop.html",
-    "/male-shop/shopping-cart.html": "/male-shop/shopping-cart.html"
-=======
-    "/css/app.css": "/css/app.css"
->>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
-=======
-    "/css/app.css": "/css/app.css"
->>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
+    "/male-shop/shopping-cart.html": "/male-shop/shopping-cart.html",
+    "/adminlte/.babelrc.js": "/adminlte/.babelrc.js",
+    "/adminlte/.browserslistrc": "/adminlte/.browserslistrc",
+    "/adminlte/.bundlewatch.config.json": "/adminlte/.bundlewatch.config.json",
+    "/adminlte/.editorconfig": "/adminlte/.editorconfig",
+    "/adminlte/.eslintignore": "/adminlte/.eslintignore",
+    "/adminlte/.eslintrc.json": "/adminlte/.eslintrc.json",
+    "/adminlte/.gitattributes": "/adminlte/.gitattributes",
+    "/adminlte/.gitignore": "/adminlte/.gitignore",
+    "/adminlte/.gitpod.yml": "/adminlte/.gitpod.yml",
+    "/adminlte/.lgtm.yml": "/adminlte/.lgtm.yml",
+    "/adminlte/.npmignore": "/adminlte/.npmignore",
+    "/adminlte/.stylelintignore": "/adminlte/.stylelintignore",
+    "/adminlte/.stylelintrc": "/adminlte/.stylelintrc",
+    "/adminlte/CODE_OF_CONDUCT.md": "/adminlte/CODE_OF_CONDUCT.md",
+    "/adminlte/LICENSE": "/adminlte/LICENSE",
+    "/adminlte/README.md": "/adminlte/README.md",
+    "/adminlte/composer.json": "/adminlte/composer.json",
+    "/adminlte/iframe.html": "/adminlte/iframe.html",
+    "/adminlte/index.html": "/adminlte/index.html",
+    "/adminlte/index2.html": "/adminlte/index2.html",
+    "/adminlte/index3.html": "/adminlte/index3.html",
+    "/adminlte/package-lock.json": "/adminlte/package-lock.json",
+    "/adminlte/package.json": "/adminlte/package.json",
+    "/adminlte/starter.html": "/adminlte/starter.html"
 }

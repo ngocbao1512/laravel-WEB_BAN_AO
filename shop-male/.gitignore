@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/male-shop
+/public/adminlte
 /storage/*.key
 /vendor
 .env
