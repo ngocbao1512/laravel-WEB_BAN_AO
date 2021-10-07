@@ -1,6 +1,11 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
 /***/ "./node_modules/alpinejs/dist/alpine.js":
 /*!**********************************************!*\
   !*** ./node_modules/alpinejs/dist/alpine.js ***!
@@ -1959,6 +1964,10 @@
 
 /***/ }),
 
+<<<<<<< HEAD
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
+=======
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -4020,8 +4029,16 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
+=======
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
