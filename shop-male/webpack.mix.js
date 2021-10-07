@@ -11,9 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
+
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        //
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
     ]);
 
 mix.copyDirectory('resources/views/male-shop', 'public/male-shop');
+
+mix.copyDirectory('resources/views/adminlte', 'public/adminlte');

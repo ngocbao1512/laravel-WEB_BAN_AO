@@ -47,7 +47,7 @@ class Product extends Model
     /* n - n */
     public function colors ()
     {
-        return $this->belongsToMany(Color::class)->using(ProductColor::class);
+        return $this->belongsToMany(Color::class)->using(ProductColorSize::class);
     }
 
     public function tags ()
@@ -57,7 +57,7 @@ class Product extends Model
 
     public function sizes ()
     {
-        return $this->belongsToMany(Size::class)->using(ProductSize::class);
+        return $this->belongsToMany(Size::class)->using(ProductColorSize::class);
     }
 
  

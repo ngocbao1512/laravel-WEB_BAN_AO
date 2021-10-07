@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::get('/home-page', function () {
     return view('my-directory.home-page');
 });
@@ -43,4 +51,6 @@ Route::get('/blog-details', function () {
 Route::get('/contact', function () {
     return view('my-directory.contact');
 });
-
+Route::get('/admin', function () {
+    return view('my-admin.home-page');
+});

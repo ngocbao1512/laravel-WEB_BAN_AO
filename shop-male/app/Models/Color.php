@@ -16,7 +16,7 @@ class Color extends Model
     /* n - n */
     public function products ()
     {
-        return $this->belongsToMany(Product::class)->using(ProductColor::class);
+        return $this->belongsToMany(Product::class)->using(ProductColorSize::class);
     }
 
 
