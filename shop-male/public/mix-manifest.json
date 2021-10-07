@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+<<<<<<< HEAD
     "/css/app.css": "/css/app.css",
     "/male-shop/about.html": "/male-shop/about.html",
     "/male-shop/blog-details.html": "/male-shop/blog-details.html",
@@ -12,4 +13,7 @@
     "/male-shop/shop-details.html": "/male-shop/shop-details.html",
     "/male-shop/shop.html": "/male-shop/shop.html",
     "/male-shop/shopping-cart.html": "/male-shop/shopping-cart.html"
+=======
+    "/css/app.css": "/css/app.css"
+>>>>>>> fcf19a6e9c17f57ad6894627c326d6bb542d6017
 }
