@@ -25,17 +25,17 @@ class Product extends Model
     /* n - 1 */
     public function user ()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function brand ()
     {
-        return $this->belongsto(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function category ()
     {
-        return $this->belongsto(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     /* 1 - n */
