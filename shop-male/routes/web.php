@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\BrandController as AdminBrandController;
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\TagController as AdminTagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,18 +56,23 @@ Route::get('/blog-details', function () {
 Route::get('/contact', function () {
     return view('my-directory.contact');
 });
-Route::get('/admin', function () {
-    return view('my-admin.home-page');
-});
-Route::get('/products', function () {
-    return view('my-admin.products.index');
-});
-Route::get('/show-product', function () {
-    return view('my-admin.products.show');
-});
-Route::get('/add-product', function () {
-    return view('my-admin.products.add');
-});
-Route::get('/edit-product', function () {
-    return view('my-admin.products.edit');
+
+Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+
+    Route::get('/home-page', function () {
+        return view('my-admin.home-page', [
+            'user' => auth()->user()->name,
+            ]);
+    })->name('home-page');
+
+    Route::resource('products', AdminProductController::class);
+
+    Route::resource('categories', AdminCategoryController::class);
+
+    Route::resource('brands', AdminBrandController::class);
+
+    Route::resource('blogs', AdminBlogController::class);
+
+    Route::resource('tags', AdminTagController::class);
+    
 });

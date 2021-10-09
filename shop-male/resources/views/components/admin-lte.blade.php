@@ -23,7 +23,7 @@
     <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="/admin">
+                <a class="navbar-brand" href="/admin/home-page">
                     <h1 class="tm-site-title mb-0">Admin Male Shop </h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/admin">
+                            <a class="nav-link active" href="/admin/home-page">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -53,25 +53,25 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/products">
+                            <a class="nav-link" href="/admin/products">
                             <i class="fas fa-cubes"></i> Products
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/brands">
+                            <a class="nav-link" href="/admin/brands">
                             <i class="fas fa-tshirt"></i> Brands
                             </a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link" href="/blogs">
+                            <a class="nav-link" href="/admin/blogs">
                             <i class="fab fa-blogger-b"></i> Blogs
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/accounts">
+                            <a class="nav-link" href="/admin/accounts">
                                 <i class="far fa-user"></i> Accounts
                             </a>
                         </li>

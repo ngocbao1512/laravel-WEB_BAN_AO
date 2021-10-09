@@ -29,10 +29,10 @@
                     <td>10%</td>
                     <td> Color: Red</td>
                     <td class="row">
-                      <a href="/show-product" class="col-4" >
+                      <a href="/admin/products/show" class="col-4" >
                         <i class="far fa-eye tm-product-delete-icon"></i>
                       </a>
-                      <a href="/edit-product" class="col-4" >
+                      <a href="/admin/products/edit" class="col-4" >
                         <i class="far fa-edit tm-product-delete-icon"></i>
                       </a>
                       <a href="#" class="col-4" >
@@ -45,7 +45,7 @@
               </table>
             </div>
             <!-- table container -->
-            <a href="/add-product" class="btn btn-primary mb-3">Add new product</a>
+            <a href="{{ route('admin.products.create')}}" class="btn btn-primary mb-3">Add new product</a>
             <button class="btn btn-primary mb-3 float-right">Delete selected products</button>
           </div>
         </div>
@@ -87,5 +87,4 @@
           </div>
         </div>
       </div>
-  
-</x-admin-lte>
+  </x-admin-lte>
