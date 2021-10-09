@@ -18,11 +18,11 @@ class ProductTag extends Pivot
     /* n - 1 */
     public function product ()
     {
-        return $this->belongsto(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function tag ()
     {
-        return $this->belongsto(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
 }

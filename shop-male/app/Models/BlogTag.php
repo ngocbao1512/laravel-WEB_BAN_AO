@@ -16,11 +16,11 @@ class BlogTag extends Pivot
     /* n - 1 */
     public function blog ()
     {
-        return $this->belongsto(Blog::class);
+        return $this->belongsTo(Blog::class);
     }
 
     public function tag ()
     {
-        return $this->belongsto(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
 }

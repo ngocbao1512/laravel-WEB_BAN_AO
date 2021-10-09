@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
 Route::get('/home-page', function () {
     return view('home-page');
 });
@@ -45,4 +53,16 @@ Route::get('/contact', function () {
 });
 Route::get('/admin', function () {
     return view('my-admin.home-page');
+});
+Route::get('/products', function () {
+    return view('my-admin.products.index');
+});
+Route::get('/show-product', function () {
+    return view('my-admin.products.show');
+});
+Route::get('/add-product', function () {
+    return view('my-admin.products.add');
+});
+Route::get('/edit-product', function () {
+    return view('my-admin.products.edit');
 });

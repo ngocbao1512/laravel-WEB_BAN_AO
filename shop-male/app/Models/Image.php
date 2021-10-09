@@ -22,26 +22,26 @@ class Image extends Model
     /* n - 1 */
     public function user ()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function blog ()
     {
-        return $this->belongsto(Blog::class);
+        return $this->belongsTo(Blog::class);
     }
 
     public function product ()
     {
-        return $this->belongsto(Product::class);
+        return $this->belongsTo(Product::class);
     }
 
     public function category ()
     {
-        return $this->belongsto(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function brand ()
     {
-        return $this->belongsto(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 }

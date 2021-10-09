@@ -25,17 +25,17 @@ class Product extends Model
     /* n - 1 */
     public function user ()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function brand ()
     {
-        return $this->belongsto(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
     public function category ()
     {
-        return $this->belongsto(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     /* 1 - n */
@@ -47,7 +47,7 @@ class Product extends Model
     /* n - n */
     public function colors ()
     {
-        return $this->belongsToMany(Color::class)->using(ProductColor::class);
+        return $this->belongsToMany(Color::class)->using(ProductColorSize::class);
     }
 
     public function tags ()
@@ -57,7 +57,7 @@ class Product extends Model
 
     public function sizes ()
     {
-        return $this->belongsToMany(Size::class)->using(ProductSize::class);
+        return $this->belongsToMany(Size::class)->using(ProductColorSize::class);
     }
 
  

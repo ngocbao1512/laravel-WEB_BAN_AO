@@ -18,7 +18,7 @@ class Blog extends Model
     /* n - 1 */
     public function user ()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /* 1 - n */

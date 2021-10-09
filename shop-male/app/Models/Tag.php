@@ -14,6 +14,12 @@ class Tag extends Model
         'user_id',
     ];
 
+    /* n - 1 */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     /* n - n */
     public function products ()
     {

@@ -20,7 +20,7 @@ class ProfileAdmin extends Model
     /* 1 - 1 */
     public function user ()
     {
-        return $this->belongsto(User::class);
+        return $this->belongsTo(User::class);
     }
 
     
