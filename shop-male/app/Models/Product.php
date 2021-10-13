@@ -38,11 +38,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    /* 1 - n */
-    public function images ()
-    {
-        return $this->hasMany(image::class);
-    }
+    
+    
 
     /* n - n */
     public function colors ()
@@ -58,6 +55,11 @@ class Product extends Model
     public function sizes ()
     {
         return $this->belongsToMany(Size::class)->using(ProductColorSize::class);
+    }
+
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
  

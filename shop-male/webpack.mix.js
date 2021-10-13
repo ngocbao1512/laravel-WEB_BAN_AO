@@ -21,4 +21,4 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.copyDirectory('resources/views/male-shop', 'public/male-shop');
 
-mix.copyDirectory('resources/views/adminlte', 'public/adminlte');
+mix.copyDirectory('resources/views/admin-lte', 'public/admin-lte');

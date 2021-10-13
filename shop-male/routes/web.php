@@ -30,7 +30,7 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/home-page', function () {
-    return view('my-directory.home-page');
+    return view('home-page');
 });
 Route::get('/shop', function () {
     return view('my-directory.shop');

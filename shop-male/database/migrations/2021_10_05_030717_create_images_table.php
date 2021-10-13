@@ -16,11 +16,6 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->biginteger('product_id')->nullable();
-            $table->biginteger('blog_id')->nullable();
-            $table->biginteger('category_id')->nullable();
-            $table->biginteger('brand_id')->nullable();
-            $table->biginteger('user_id')->nullable();
             $table->timestamps();
         });
     }
