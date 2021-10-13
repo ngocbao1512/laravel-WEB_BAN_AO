@@ -21,10 +21,10 @@ class Category extends Model
         return $this->belongsTo(User::class);
     }
 
-    /* 1 - n */
-    public function images ()
+    /* n - n */
+    public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->morphToMany(Image::class, 'imageable');
     }
 
     public function products ()

@@ -11,37 +11,34 @@ class Image extends Model
 
     protected $fillable = [
         'image',
-        'product_id',
-        'blog_id',
-        'category_id',
-        'description',
-        'user_id',
-        'brand_id',
     ];
 
-    /* n - 1 */
-    public function user ()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->morphedByMany(User::class, 'imageable');
     }
 
-    public function blog ()
+    /**
+     * Get all of the videos that are assigned this tag.
+     */
+    public function blogs()
     {
-        return $this->belongsTo(Blog::class);
+        return $this->morphedByMany(Blog::class, 'imageable');
     }
 
-    public function product ()
+    public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->morphedByMany(Product::class, 'imageable');
     }
 
-    public function category ()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->morphedByMany(Category::class, 'imageable');
     }
 
-    public function brand ()
+    public function brands()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->morphedByMany(Brand::class, 'imageable');
     }
+
 }

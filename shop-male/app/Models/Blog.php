@@ -21,16 +21,15 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    /* 1 - n */
-    public function images ()
-    {
-        return $this->hasMany(Image::class);
-    }
-
     /* n - n */
     public function tags ()
     {
         return $this->belongsToMany(Tag::class)->using(BlogTag::class);
+    }
+
+    public function images()
+    {
+        return $this->morphToMany(Image::class, 'imageable');
     }
 }
 
