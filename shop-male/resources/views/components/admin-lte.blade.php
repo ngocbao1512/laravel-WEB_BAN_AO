@@ -33,68 +33,34 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/admin/home-page">
+                            <a class="nav-link dashboard" href="{{route('admin.home-page')}}">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="far fa-file-alt"></i>
-                                <span>
-                                    Reports <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Daily Report</a>
-                                <a class="dropdown-item" href="#">Weekly Report</a>
-                                <a class="dropdown-item" href="#">Yearly Report</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/products">
+                        
+                        <li class="nav-item product">
+                            <a class="nav-link" href="{{route('admin.products.index')}}">
                             <i class="fas fa-cubes"></i> Products
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/brands">
+                        <li class="nav-item brand">
+                            <a class="nav-link" href="{{route('admin.brands.index')}}">
                             <i class="fas fa-tshirt"></i> Brands
                             </a>
                         </li>
                         
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/blogs">
+                        <li class="nav-item blog">
+                            <a class="nav-link" href="{{route('admin.blogs.index')}}">
                             <i class="fab fa-blogger-b"></i> Blogs
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/accounts">
-                                <i class="far fa-user"></i> Accounts
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-cog"></i>
-                                <span>
-                                    Settings <i class="fas fa-angle-down"></i>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
-                            </div>
-                        </li>
+                        
                     </ul>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
-                        </li>
+                        @yield('logout')
                     </ul>
                 </div>
             </div>
@@ -109,7 +75,7 @@
             </div>
         </footer>
     </div>
-
+    
     <script src="/admin-lte/js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="/admin-lte/js/moment.min.js"></script>
@@ -119,6 +85,7 @@
     <script src="/admin-lte/js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script src="/admin-lte/js/tooplate-scripts.js"></script>
+    @yield('active')
     <script>
         Chart.defaults.global.defaultFontColor = 'white';
         let ctxLine,
@@ -142,7 +109,7 @@
                 updateLineChart();
                 updateBarChart();
             });
-        })
+        })  
     </script>
 </body>
 

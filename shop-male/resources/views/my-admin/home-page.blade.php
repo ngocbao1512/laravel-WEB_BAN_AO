@@ -259,5 +259,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  
 </x-admin-lte>
