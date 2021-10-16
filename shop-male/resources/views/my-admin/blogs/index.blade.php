@@ -35,7 +35,7 @@
         <h5>FEATURED TAGS</h5>
         <div class="tags">
           <a href="/tags/linux" title="tui" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px; ">
-            {{auth()->user()->name;}}
+            tui
           </a>
           <a href="/tags/linux" title="quan" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px;">
             quan
@@ -47,14 +47,7 @@
     </section>
     </div>      
   </div>
-  {{-- copy here --}}
-  
 
-  @section('active')
-  <script>
-     var btn = document.getElementsByClassName("blog")[0];
-      btn.className += " active";
-  </script> 
-  @endsection
-  {{-- end copy --}}
+@include('partials.active-blog');
+
 </x-admin-lte>
