@@ -17,13 +17,18 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,600,700" rel="stylesheet">
+    <link href="http://proj.test/css/app.css" rel="stylesheet" type="text/css">
+    <link href="http://proj.test/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="http://proj.test/css/bootstrap-datetimepicker.css" rel="stylesheet" />
 </head>
 
 <body id="reportsPage">
     <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="/admin/home-page">
+                <a class="navbar-brand" href="{{route('admin.home-page')}}">
                     <h1 class="tm-site-title mb-0">Admin Male Shop </h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,29 +43,33 @@
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        
-                        <li class="nav-item product">
-                            <a class="nav-link" href="{{route('admin.products.index')}}">
+                        <li class="nav-item">
+                            <a class="nav-link product" href="{{ route('admin.products.index') }}">
                             <i class="fas fa-cubes"></i> Products
                             </a>
-                        </li>
-
-                        <li class="nav-item brand">
-                            <a class="nav-link" href="{{route('admin.brands.index')}}">
-                            <i class="fas fa-tshirt"></i> Brands
-                            </a>
-                        </li>
+                        </li>   
                         
-                        <li class="nav-item blog">
-                            <a class="nav-link" href="{{route('admin.blogs.index')}}">
+                        <li class="nav-item">
+                            <a class="nav-link blog" href="{{ route('admin.blogs.index') }}">
                             <i class="fab fa-blogger-b"></i> Blogs
                             </a>
                         </li>
-
-                        
                     </ul>
                     <ul class="navbar-nav">
-                        @yield('logout')
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="far fa-user"></i> {{ auth()->user()->name; }}
+                        </a>
+                    </li>
+                    <li style=" line-height : 90px;">
+                        <form method="POST" action="{{route('logout')}}">
+                        @csrf 
+                        <a style="color: white; font-size: 28px;" href="{{route('logout')}}" onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                        </form>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -75,7 +84,8 @@
             </div>
         </footer>
     </div>
-    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="/admin-lte/js/jquery-3.3.1.min.js"></script>
     <!-- https://jquery.com/download/ -->
     <script src="/admin-lte/js/moment.min.js"></script>
@@ -111,6 +121,8 @@
             });
         })  
     </script>
+     @yield('script') 
+
 </body>
 
 </html>
