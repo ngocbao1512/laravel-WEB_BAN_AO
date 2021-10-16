@@ -1,4 +1,5 @@
 <x-admin-lte>
+
   <div class="container" style="margin-top: 30px">
     <div class="row">
       <div class="col-12 mx-auto">
@@ -13,11 +14,14 @@
                 <div class="row">
                    <div class=" col-xs-12 col-sm-6">
                    <label for="name"><b>Product Name</b></label>
-                    <p style="color: white;">Lorem Ipsum Product</p>
+                    <p style="color: white;">{{ $product->name }}</p>
                    </div>
                    <div class=" col-xs-12 col-sm-6">
                     <label for="brand"><b>Rate</b></label>&ensp;
-                   <span><i class="fas fa-star" style="color: white"></i></span>
+                   <span style="color:white;">{{ $product->rate }}
+                    @for ($i=0; $i<$product->rate; $i++) 
+                    <span class="far fa-star"></span> 
+                    @endfor </span>
                    </div>
                  </div>
                 </div>
@@ -26,11 +30,11 @@
                  <div class="row">
                    <div class=" col-xs-12 col-sm-6">
                     <label for="category"><b>Category</b></label>
-                    <p style="color: white;">Shirt</p>
+                    <p style="color: white;">{{ $product->category->name }}</p>
                    </div>
                    <div class=" col-xs-12 col-sm-6">
                     <label for="brand"><b>Brand</b></label>
-                    <p style="color: white;">Chanel</p>
+                    <p style="color: white;">{{ $product->brand->name }}</p>
                    </div>
                  </div>
                 </div>
@@ -38,17 +42,17 @@
                 <div class="row">
                   <div class="form-group  col-xs-12 col-sm-6">
                     <label for="price"><b>Price</b></label>
-                    <p style="color: white;">$100</p>
+                    <p style="color: white;">${{ $product->price }}</p>
                   </div>
                   <div class="form-group  col-xs-12 col-sm-6">
                     <label for="sale_off"><b>Sale Of</b></label>
-                    <p style="color: white;">10$</p>
+                    <p style="color: white;">{{ $product->sale_off }}%</p>
                   </div>
                 </div>
                 <hr>
                 <div class="form-group ">
                   <label for="description"><b>Description</b></label>
-                  <p style="color: white;">Red Shirt</p>
+                  <p style="color: white;">{{ $product->description }}</p>
                 </div>
                 
             </div>
@@ -58,7 +62,7 @@
               </div>
             </div>
             <div class="col-12">
-              <a  href="/products" class="btn btn-primary btn-block text-uppercase" style="color:white">Go To List Products</a>
+              <a  href="{{ route('admin.products.index') }}" class="btn btn-primary btn-block text-uppercase" style="color:white">Go To List Products</a>
             </div>
             </form>
           </div>
@@ -66,4 +70,7 @@
       </div>
     </div>
   </div>
+
+@include('partials.active-product');
+
 </x-admin-lte>
