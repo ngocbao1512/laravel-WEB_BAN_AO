@@ -19,7 +19,7 @@
         </div>  
 
       </div>
-      <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new blog</a>
+      <a href="{{route('admin.blogs.create')}}" class="btn btn-primary btn-block text-uppercase mb-3">Add new blog</a>
       <button class="btn btn-primary btn-block text-uppercase mb-3">Delete selected blogs</button>
     </div>
 
@@ -35,7 +35,7 @@
         <h5>FEATURED TAGS</h5>
         <div class="tags">
           <a href="/tags/linux" title="tui" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px; ">
-            tui
+            {{auth()->user()->name;}}
           </a>
           <a href="/tags/linux" title="quan" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px;">
             quan
@@ -47,28 +47,8 @@
     </section>
     </div>      
   </div>
-
-  
-
-
-
   {{-- copy here --}}
-  @section('logout')
-  <li class="nav-item">
-    <a class="nav-link" href="#">
-        <i class="far fa-user"></i> {{$user}}
-    </a>
-  </li>
-  <li style=" line-height : 90px;">
-    <form method="POST" action="{{route('logout')}}">
-      @csrf 
-      <a style="color: white; font-size: 28px;" href="{{route('logout')}}" onclick="event.preventDefault();
-      this.closest('form').submit();">
-        <i class="fas fa-sign-out-alt"></i>
-      </a>
-    </form>
-  </li>  
-  @endsection
+  
 
   @section('active')
   <script>

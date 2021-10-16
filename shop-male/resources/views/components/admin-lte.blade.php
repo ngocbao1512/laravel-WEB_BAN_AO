@@ -60,7 +60,20 @@
                         
                     </ul>
                     <ul class="navbar-nav">
-                        @yield('logout')
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="far fa-user"></i> {{ auth()->user()->name; }}
+                            </a>
+                        </li>
+                        <li style=" line-height : 90px;">
+                            <form method="POST" action="{{route('logout')}}">
+                            @csrf 
+                            <a style="color: white; font-size: 28px;" href="{{route('logout')}}" onclick="event.preventDefault();
+                            this.closest('form').submit();">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                            </form>
+                        </li>  
                     </ul>
                 </div>
             </div>

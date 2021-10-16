@@ -41,13 +41,20 @@ class BlogController extends Controller
 
     public function create()
     {
+        $tags = $this->modelTag;
+        $user = auth()->user()->name;
+        return view('my-admin.blogs.create',[
+            'tags' => $tags,
+            'user' => $user,
+        ]);
         
     }
 
    
     public function store(Request $request)
     {
-        
+        dd($request);
+        // tag blogtag image imageable  blog(title, content, userid)
     }
 
     
