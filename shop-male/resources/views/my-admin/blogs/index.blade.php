@@ -19,7 +19,7 @@
         </div>  
 
       </div>
-      <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new blog</a>
+      <a href="{{route('admin.blogs.create')}}" class="btn btn-primary btn-block text-uppercase mb-3">Add new blog</a>
       <button class="btn btn-primary btn-block text-uppercase mb-3">Delete selected blogs</button>
     </div>
 

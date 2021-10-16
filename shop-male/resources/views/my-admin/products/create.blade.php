@@ -5,7 +5,7 @@
       <div class="col-12 mx-auto">
       <div class="float-center">
               <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Add Product</p>
-            </div>
+      </div>
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">

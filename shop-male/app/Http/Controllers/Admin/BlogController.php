@@ -30,23 +30,27 @@ class BlogController extends Controller
             $blogs = $blogs->paginate(config('blog.paginate10'));
         }
         $tags = $this->modelTag;
-        $user = auth()->user()->name;
 
         return view('my-admin.blogs.index',[
             'blogs' => $blogs,
             'tags' => $tags,
-            'user' => $user,
         ]);
     }
 
     public function create()
     {
+        $tags = $this->modelTag;
+        return view('my-admin.blogs.create',[
+            'tags' => $tags,
+        ]);
         
     }
 
    
     public function store(Request $request)
     {
+        dd($request);
+        // tag blogtag image imageable  blog(title, content, userid)
         
     }
 
