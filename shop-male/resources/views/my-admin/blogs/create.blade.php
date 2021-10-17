@@ -6,6 +6,7 @@
             </div>
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                 <form action="{{route('admin.blogs.store')}}" method="POST" class="tm-edit-product-form" enctype="multipart/form-data">
+                    @csrf
                 <div class="row tm-edit-product-row">
                     <div class="col-xl-6 col-lg-6 col-md-12">
                             @csrf
