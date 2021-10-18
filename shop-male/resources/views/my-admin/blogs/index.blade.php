@@ -35,12 +35,14 @@
     sidebar-container
     ">  
     <section>
-        <hr class="hidden-sm hidden-xs">
+        <hr class="">
         <h5>FEATURED TAGS</h5>
-        <div class="tags">
+        <div class="tags" style="min-height: 30vh; max-width: 20vw;">
           @foreach ($tags as $tag)
-            <a href="{{route('admin.tags.index',['tag'=>$tag->id])}}" title="tui" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px; ">
+            <a href="{{route('admin.tags.index',['tag'=>$tag->id])}}">
+              <span  style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; color: white; margin-right: 10px; margin-top : 20px; position : relative; ">
               {{$tag->name}}
+              </span>
             </a>
           @endforeach
         </div>

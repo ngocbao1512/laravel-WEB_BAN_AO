@@ -17,11 +17,12 @@
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
+    @yield('css')
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,600,700" rel="stylesheet">
     <link href="http://proj.test/css/app.css" rel="stylesheet" type="text/css">
     <link href="http://proj.test/css/toastr.min.css" rel="stylesheet" type="text/css">
-    <link href="http://proj.test/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="http://proj.test/css/bootstrap-datetimepicker.css" rel="stylesheet" />  
 </head>
 
 <body id="reportsPage">

@@ -1,5 +1,19 @@
 <x-admin-lte>
+    @if (session('msg'))
+          <div class="alert alert-success flex-container " style="display: grid; grid-template: 9fr 1fr">
+            {{ session('msg') }}
+
+            <i class="far fa-times-circle closesession" style="grid-collumn:2/3"></i>
+          </div>
+      @endif
+      @if (session('error'))
+          <div class="alert alert-danger">
+            {{ session('error') }}
+            <i class="far fa-times-circle closesession" style="grid-collumn:2/3"></i>
+          </div>
+      @endif
     <div class="row" >
+        
         <div class="col-9" style="min-height: 70vh">
             <div class="float-center">
                 <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Add Product</p>
@@ -57,16 +71,12 @@
             <section>
                 <hr class="hidden-sm hidden-xs">
                 <h5>FEATURED TAGS</h5>
-                <div class="tags" style="min-height: 30vh">
-                  <a href="/tags/linux" title="tui" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px; ">
-                    tui
-                  </a>
-                  <a href="/tags/linux" title="quan" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px;">
-                    quan
-                  </a>
-                  <a href="/tags/linux" title="ao" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; padding: 5px; color: white; margin-right: 5px;">
-                    ao
-                  </a>
+                <div class="tags" style="min-height: 30vh; max-width: 20vw;">
+                    @foreach ($tags as $tag)
+                    <a href="{{route('admin.tags.index',['tag'=>$tag->id])}}" style="border: 1px solid rgb(153, 152, 152); border-radius: 20%;  color: white; margin-right: 5px;">
+                      {{$tag->name}}
+                    </a>
+                  @endforeach
                 </div>
             </section>
         </div>         

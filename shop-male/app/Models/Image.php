@@ -10,7 +10,7 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'image',
+        'name',
     ];
 
     public function users()
@@ -21,14 +21,14 @@ class Image extends Model
     /**
      * Get all of the videos that are assigned this tag.
      */
-    public function blogs()
+    public function blogs ()
     {
-        return $this->morphedByMany(Blog::class, 'imageable');
+        return $this->belongsToMany(Blog::class);
     }
 
-    public function products()
+    public function products ()
     {
-        return $this->morphedByMany(Product::class, 'imageable');
+        return $this->belongsToMany(Product::class);
     }
 
     public function categories()
@@ -40,5 +40,6 @@ class Image extends Model
     {
         return $this->morphedByMany(Brand::class, 'imageable');
     }
+
 
 }

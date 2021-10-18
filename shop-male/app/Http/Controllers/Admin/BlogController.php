@@ -39,7 +39,7 @@ class BlogController extends Controller
         if($blogs == null){
             $blogs = 'have nothing here';
         } else {
-            $blogs = $blogs->paginate(config('blog.paginate10'));
+            $blogs = $blogs->all();
         }
         $tags = $this->modelTag->all();
 
@@ -51,7 +51,7 @@ class BlogController extends Controller
 
     public function create()
     {
-        $tags = $this->modelTag;
+        $tags = $this->modelTag->all();
         return view('my-admin.blogs.create',[
             'tags' => $tags,
         ]);
@@ -99,10 +99,11 @@ class BlogController extends Controller
 
                 $this->modelImageable->create($imageable);
                 
-                return redirect()
+                
+            }
+            return redirect()
                 ->route('admin.blogs.create')
                 ->with('msg','add success');
-            }
 
 
         }
@@ -111,11 +112,11 @@ class BlogController extends Controller
             $error = 'Something went wrong.';
 
             return redirect()
-            ->route('admin.blogs.index')
+            ->route('admin.blogs.create')
             ->with('error', $error);
         }
         //dd($data);
-
+        
         
     }
 
@@ -124,7 +125,9 @@ class BlogController extends Controller
     {
         $blog = $this->modelBlog->findOrFail($id);
 
-        return view('my-admin.blogs.show',['blog',$blog]);
+        return view('my-admin.blogs.show',[
+            'blog' => $blog,
+        ]);
         
     }
 
