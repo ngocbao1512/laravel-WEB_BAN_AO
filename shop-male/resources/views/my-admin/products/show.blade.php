@@ -58,7 +58,9 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-edit mx-auto">
-                <img src="/admin-lte/img/product-image.jpg" style="width: 100%; height: 200%" alt="Product image" class="img-fluid d-block mx-auto">
+                @foreach ($product->images as $image)
+                <img src=" {{ showImage($image) }}" style="width: 100%; height: 200%" alt="{{ $product->name}}" class="img-fluid d-block mx-auto">
+                @endforeach
               </div>
             </div>
             <div class="col-12">
