@@ -6,3 +6,10 @@ if(!function_exists('getTag')) {
         return str_split($string_input,'|');
     }
 }
+
+if (!function_exists('showImage')) {
+    function showImage($image)
+    {
+        return asset('public/images/' . $image);
+    }
+}

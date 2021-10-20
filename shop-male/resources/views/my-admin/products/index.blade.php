@@ -124,7 +124,7 @@
           </table>
         </div>
         <!-- table container -->
-        <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new category</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-block text-uppercase mb-3">Add new category</a>
       </div>
       <hr style="margin: 24px 0 24px 0">
       <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
