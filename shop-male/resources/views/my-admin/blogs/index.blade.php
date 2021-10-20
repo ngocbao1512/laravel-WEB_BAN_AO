@@ -19,6 +19,11 @@
                   {{$blog->user->name}}
                 @endif  {{$blog->created_at}}
             </p>
+
+            <button class="btn btn-warning text-uppercase mb-3" >edit</button>
+            <button class="btn btn-warning text-uppercase mb-3" >remove this post</button>
+            <input type="checkbox" id="css" name="fav_language" value="CSS">
+            <input type="color" style="height: 50px; width: 50px; border: none;">
           </div>  
         @endforeach
 
@@ -39,7 +44,7 @@
         <h5>FEATURED TAGS</h5>
         <div class="tags" style="min-height: 30vh; max-width: 20vw;">
           @foreach ($tags as $tag)
-            <a href="{{route('admin.tags.index',['tag'=>$tag->id])}}">
+            <a href="{{route('admin.tags.show',['tag'=>$tag->id])}}">
               <span  style="border: 1px solid rgb(153, 152, 152); border-radius: 20%; color: white; margin-right: 10px; margin-top : 20px; position : relative; ">
               {{$tag->name}}
               </span>

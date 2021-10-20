@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Tag;
 use App\Models\Image;
-use App\Models\Imageable;
 use App\Models\BlogTag;
+use App\Models\BlogImage;
 
 class BlogController extends Controller
 {
@@ -17,20 +17,20 @@ class BlogController extends Controller
     protected $modelTag;
     protected $modelBlogTag;
     protected $modelImage;
-    protected $modelImageable;
+    protected $modelBlogImage;
 
     public function __construct(
         Blog $blog,
         Tag $tag,
         Image $image,
-        Imageable $imageable,
-        BlogTag $blogtag
+        BlogTag $blogtag,
+        BlogImage $blogimage
         ){
         $this->modelBlog = $blog;
         $this->modelTag = $tag;
         $this->modelImage = $image;
-        $this->modelImageable = $imageable;
         $this->modelBlogTag = $blogtag;
+        $this->modelBlogImage = $blogimage;
     }
     
     public function index()
@@ -65,46 +65,49 @@ class BlogController extends Controller
             'title',
             'content',
         ]);
-
         $data_blog['user_id'] = auth()->id();
-
-        $data_tag['name'] = $request['tag'];
         $data_tag['user_id'] = auth()->id();
+        $tags = arrayTag($request['tag']);
+        //dd($tags);
 
         try {
-            /* create table blog */
-            $data['user_id'] = auth()->id();
+            /* create table blogs */
+            $data_blog['user_id'] = auth()->id();
+            $new_blog = $this->modelBlog->create($data_blog);
 
-            /* create table tag */
-            //dd($data_tag);
-            $newtag = $this->modelTag->create($data_tag);
-            $newblog = $this->modelBlog->create($data_blog);
-            /* create table blogTag */
-            $blogtag['blog_id'] = $newblog->id;
-            $blogtag['tag_id'] = $newtag->id;
-            $this->modelBlogTag->create($blogtag);
-            /* create table imageable */
+            foreach($tags as $tag)
+            {
+                if($tag != null) 
+                {
+                /* create table tags */
+                $data_tag['name'] = $tag;
+                $new_tag = $this->modelTag->create($data_tag);
 
+                /* create table blog_tags */
+                $data_blogtag['blog_id'] = $new_blog->id;
+                $data_blogtag['tag_id'] = $new_tag->id;
+                $this->modelBlogTag->create($data_blogtag);
+                }
+                
+            }
+
+            /* create table images */
             $file = $request->file('image');
             if ($file) {
-                $file->store('public/images');
-                /* create table image */
-                $imageinput['image'] = $file->hashName();
-                $newimage = $this->modelImage->create($imageinput);
+               // $file->hashName = encodeImage($file);
+                $image_name = encodeImage($file);
+                $file->move('storage/blogs',$image_name);
+                $data_image['name'] = $image_name;
+                $new_image = $this->modelImage->create($data_image);
 
-                /* create table imageable */
-                $imageable['image_id'] = $newimage->id;
-                $imageable['imageable_id'] = $newblog->id;
-                $imageable['imageable_type'] = 'blog';
-
-                $this->modelImageable->create($imageable);
-                
-                
+                /* create table blog_images */
+                $data_blogimage['blog_id'] = $new_blog->id;
+                $data_blogimage['image_id'] = $new_image->id;
+                $this->modelBlogImage->create($data_blogimage);     
             }
             return redirect()
                 ->route('admin.blogs.create')
                 ->with('msg','add success');
-
 
         }
         catch (\Exception $e){
@@ -114,9 +117,7 @@ class BlogController extends Controller
             return redirect()
             ->route('admin.blogs.create')
             ->with('error', $error);
-        }
-        //dd($data);
-        
+        }         
         
     }
 

@@ -23,6 +23,7 @@
     <link href="http://proj.test/css/app.css" rel="stylesheet" type="text/css">
     <link href="http://proj.test/css/toastr.min.css" rel="stylesheet" type="text/css">
     <link href="http://proj.test/css/bootstrap-datetimepicker.css" rel="stylesheet" />  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
 </head>
 
 <body id="reportsPage">

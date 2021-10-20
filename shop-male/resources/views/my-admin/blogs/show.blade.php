@@ -22,11 +22,8 @@
                 <div class="col-lg-12">
                     <div class="blog__details__pic">
                         @foreach ($blog->images as $image)
-                        @php $url = asset("storage/$image") @endphp
-                            <img src="{{$url}}" alt="">
-                            helo
+                        <img src="{{showBlogImage($image->name)}}" alt="" style="max-height: 500px;filter: grayscale(100%);">
                         @endforeach
-                        
                     </div>
                 </div>
                 <div class="col-lg-8">
