@@ -10,12 +10,13 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
     ];
 
     public function users()
     {
-        return $this->morphedByMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     /**
@@ -28,7 +29,7 @@ class Image extends Model
 
     public function products ()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Image::class, 'product_images');
     }
 
     public function categories()

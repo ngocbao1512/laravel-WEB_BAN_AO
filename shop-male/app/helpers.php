@@ -28,3 +28,9 @@ if(!function_exists('showBlogImage')) {
         }
     }
 }
+if (!function_exists('showImage')) {
+    function showImage($image)
+    {
+        return asset('public/images/' . $image);
+    }
+}

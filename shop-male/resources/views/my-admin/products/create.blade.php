@@ -14,8 +14,13 @@
                 <div class="form-group ">
                 <div class="row">
                    <div class=" col-xs-12 col-sm-6">
-                   <label for="name"><b>Product Name</b></label>
-                  <input id="name" name="name" type="text" placeholder="Enter product name" class="form-control validate" />
+                    <label for="name"><b>Product Name</b></label>
+                    <input id="name" name="name" type="text" placeholder="Enter product name" class="form-control validate  @error('name') is-invalid @enderror" />
+                    @error('name')
+                      @if ($errors->has('name'))
+                        <p style="color:yellow; font-size:12px; ">{{ $errors->first('name') }}</p>
+                      @endif
+                    @enderror
                    </div>
                  </div>
                 </div>
@@ -25,17 +30,17 @@
                    <div class=" col-xs-12 col-sm-6">
                    <label for="category"><b>Category</b></label>
                     <select class="custom-select tm-select-accounts" name="category_id" id="category">
-                        <option value="1" selected>Shirt</option>
-                        <option value="2">Most Popular</option>
-                        <option value="3">Trending</option>
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach 
                   </select>
                    </div>
                    <div class=" col-xs-12 col-sm-6">
                    <label for="brand"><b>Brand</b></label>
                     <select class="custom-select tm-select-accounts" name="brand_id" id="brand">
-                        <option value="1" selected>Chanel</option>
-                        <option value="2">Most Popular</option>
-                        <option value="3">Trending</option>
+                    @foreach($brands as $brand)
+                      <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                    @endforeach 
                   </select>
                    </div>
                  </div>
@@ -44,34 +49,46 @@
                 <div class="row">
                   <div class="form-group  col-xs-12 col-sm-6">
                     <label for="price"><b>Price</b></label>
-                    <input id="price" name="price" type="text" placeholder="Enter price" class="form-control validate" />
+                    <input id="price" name="price" type="text" placeholder="Enter price" class="form-control validate @error('price') is-invalid @enderror" />
+                    @error('price')
+                      @if ($errors->has('price'))
+                        <p style="color:yellow; font-size:12px; ">{{ $errors->first('price') }}</p>
+                      @endif
+                    @enderror
                   </div>
                   <div class="form-group  col-xs-12 col-sm-6">
-                    <label for="sale_off"><b>Sale Of</b></label>
-                    <input id="sale_off" name="sale_off" type="text" placeholder="Enter sale off" class="form-control validate" />
+                    <label for="sale_off"><b>Sale Off</b></label>
+                    <input id="sale_off" name="sale_off" type="text" placeholder="Enter sale off" class="form-control validate @error('sale_off') is-invalid @enderror" />
+                    @error('sale_off')
+                      @if ($errors->has('sale_off'))
+                        <p style="color:yellow; font-size:12px; ">{{ $errors->first('sale_off') }}</p>
+                      @endif
+                    @enderror
                   </div>
                 </div>
                 <hr>
                 <div class="form-group ">
                   <label for="description"><b>Description</b></label>
-                  <textarea class="form-control validate" name="description" rows="3" placeholder="Enter descreption"></textarea>
+                  <textarea class="form-control validate @error('description') is-invalid @enderror" name="description" rows="3" placeholder="Enter descreption"></textarea>
+                  @error('description')
+                    @if ($errors->has('description'))
+                      <p style="color:yellow; font-size:12px; ">{{ $errors->first('description') }}</p>
+                    @endif
+                  @enderror
                 </div>
                 
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-dummy mx-auto">
-                <i
-                  class="fas fa-cloud-upload-alt tm-upload-icon"
-                  onclick="document.getElementById('fileInput').click();"
-                ></i>
+                <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 240px;"/>
               </div>
               <div class="custom-file mt-3 mb-3">
-                <input id="fileInput" type="file" style="display:none;" name="image" />
                 <input
-                  type="button"
+                  type="file"
+                  name="image"
+                  id="patient_pic"
                   class="btn btn-primary btn-block mx-auto"
                   value="UPLOAD PRODUCT IMAGE"
-                  onclick="document.getElementById('fileInput').click();"
                 />
               </div>
             </div>
@@ -92,7 +109,8 @@
       </div>
     </div>
   </div>
+  
+@include('partials.active-product')
 
-@include('partials.active-product');
-
+@include('partials.readFileImg')
 </x-admin-lte>

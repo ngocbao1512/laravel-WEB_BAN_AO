@@ -121,10 +121,10 @@
                 updateLineChart();
                 updateBarChart();
             });
-        })  
+        });  
     </script>
      @yield('script') 
-
+     @yield('image') 
 </body>
 
 </html>
