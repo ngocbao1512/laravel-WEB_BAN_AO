@@ -16,7 +16,7 @@ class Image extends Model
 
     public function users()
     {
-        return $this->morphedByMany(User::class, 'product_images');
+        return $this->belongsToMany(User::class);
     }
 
     /**
@@ -34,12 +34,12 @@ class Image extends Model
 
     public function categories()
     {
-        return $this->morphedByMany(Category::class, 'product_images');
+        return $this->belongsToMany(Category::class);
     }
 
     public function brands()
     {
-        return $this->morphedByMany(Brand::class, 'product_images');
+        return $this->belongsToMany(Brand::class);
     }
 
 

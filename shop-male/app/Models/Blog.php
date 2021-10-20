@@ -30,7 +30,7 @@ class Blog extends Model
      /* n - n */
      public function images ()
      {
-         return $this->belongsToMany(Image::class);
+         return $this->belongsToMany(Image::class,'blog_images');
      }
 }
 

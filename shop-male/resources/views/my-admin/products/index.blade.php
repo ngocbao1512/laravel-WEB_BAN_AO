@@ -69,13 +69,7 @@
         <div  class="d-flex justify-content-between">
           {{ $products->links('pagination.bootstrap-4') }}
         </div>
-        <div  class="col-4">
-          <button type="submit" 
-            class="btn btn-primary mb-3 float-right"
-            data-toggle="modal" 
-            data-target="#modal-delete" 
-            data-url="{{ route('admin.products.destroy', ['product' => $product->id]) }}">Delete selected products</button>
-        </div>
+        
       </div>   
     </div>
     <div class="col-3 tm-block-col">
