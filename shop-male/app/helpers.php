@@ -17,20 +17,16 @@ if(!function_exists('encodeImage')) {
 }
 
 /* use to show image for blog */
-if(!function_exists('showBlogImage')) {
-    function showBlogImage($url)
+if(!function_exists('showImage')) {
+    function showImage($url, $str)
     {
         if (strpos($url,'http') !== false ) {
             return "$url";
             
         } else {
-            return  asset("storage/blogs/$url");
+            return  asset('storage/' . $str . '/' .$url);
         }
     }
 }
-if (!function_exists('showImage')) {
-    function showImage($image)
-    {
-        return asset('public/images/' . $image);
-    }
-}
+
+

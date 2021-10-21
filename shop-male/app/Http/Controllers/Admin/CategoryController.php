@@ -6,20 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\Image;
-use App\Http\Requests\RequestBasic;
+use App\Http\Requests\RequestCategory;
 
 class CategoryController extends Controller
 {
     protected $modelProduct;
     protected $modelCategory;
-    protected $modelImage;
     
-    public function __construct(Product $product, Category $categories,   Image $image)
-    {
+    public function __construct(Product $product, Category $category)
+    {//dd('ok');
         $this->modelProduct = $product;
-        $this->modelCategory = $categories;
-        $this->modelImage = $image;
+        $this->modelCategory = $category;
     }
     /**
      * Display a listing of the resource.
@@ -52,8 +49,8 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestBasic $request)
-    { dd('ok');
+    public function store(RequestCategory $request)
+    { 
         $data = $request->only([
             'name',
         ]);
@@ -61,29 +58,29 @@ class CategoryController extends Controller
         $data['user_id'] = auth()->id();
         
         try {
+            $fileImg = $request->file('image');
+           
+            if ($fileImg) {
+                $image_name = encodeImage($fileImg);
+                $fileImg->move('storage/categories',$image_name);
+                $data['image'] = $image_name;
+
+            }
+ 
             $category = $this->modelCategory->create($data);
 
-            $file = $request->file('image');
-            ($file);
-            if ($file) {
-                $file->store('public/images');
-                /* create table image */
-                $imageInput['name'] = $file->hashName();
-                $newImage = $this->modelImage->create($imageInput);
-            }
-           
             return redirect()
             ->route('admin.categories.show', ['category' => $category->id])
             ->withSuccess('Add category success!');
             
-        } catch (\Exception $e) {
+       } catch (\Exception $e) {
          
             \Log::error($e);
 
             return redirect()
                 ->route('admin.products.index')
-                ->withError('Add product failed. Please try again later!');
-        } 
+                ->withError('Add category failed. Please try again later!');
+       } 
     }
 
     /**
@@ -125,38 +122,41 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestBasic $request, $id)
-    { dd('ok');
+    public function update(RequestCategory $request, $id)
+    {   
+        $category = $this->modelCategory->findOrFail($id);
+
         $data = $request->only([
             'name',
+            'image'
         ]);
-        
+        //dd($data);
         $data['user_id'] = auth()->id();
         
         try {
-            $category = $this->modelCategory->update($data);
+            $fileImg = $request->file('image');
+           
+            if ($fileImg) {
+                $image_name = encodeImage($fileImg);
+                $fileImg->move('storage/categories',$image_name);
+                $data['image'] = $image_name;
 
-            $file = $request->file('image');
-
-            if ($file) {
-                $file->store('public/images');
-                /* create table image */
-                $imageInput['name'] = $file->hashName();
-                $newImage = $this->modelImage->update($imageInput);
             }
+
+            $category->update($data);
            
             return redirect()
             ->route('admin.categories.show', ['category' => $category->id])
             ->withSuccess('Add category success!');
             
-        } catch (\Exception $e) {
+       } catch (\Exception $e) {
          
             \Log::error($e);
 
             return redirect()
-                ->route('admin.products.index')
-                ->withError('Add product failed. Please try again later!');
-        } 
+               ->route('admin.products.index')
+               ->withError('Add category failed. Please try again later!');
+       } 
     }
 
     /**
@@ -182,8 +182,8 @@ class CategoryController extends Controller
             \Log::error($e);
 
             return redirect()
-                ->route('admin.categories.index')
-                ->withError('Delete failed. Please try again later!');
+                ->route('admin.products.index')
+                ->withError('Delete category failed. Please try again later!');
         } 
     }
 }

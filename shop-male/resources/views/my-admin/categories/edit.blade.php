@@ -28,16 +28,20 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-dummy mx-auto">
-                <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 240px;"/>
+                <img id="preview_image" src="{{ showImage($category->image, 'categories') }}" alt="" style="max-width: 100%; height: 240px;"/>
               </div>
-              <div class="custom-file mt-3 mb-3">
+              <div class="custom-file mt-3 mb-3  @error('image') is-invalid @enderror">
                 <input
                   type="file"
                   name="image"
                   id="patient_pic"
                   class="btn btn-primary btn-block mx-auto"
-                  value="UPLOAD PRODUCT IMAGE"
                 />
+                @error('image')
+                  @if ($errors->has('image'))
+                    <p style="color:yellow; font-size:12px; ">{{ $errors->first('image') }}</p>
+                  @endif
+                @enderror
               </div>
             </div>
             <div class="col-12">

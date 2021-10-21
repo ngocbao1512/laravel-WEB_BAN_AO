@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\MyRules;
 
-class RequestBasic extends FormRequest
+class RequestCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,7 @@ class RequestBasic extends FormRequest
     {
         return [
             'name' => ['required', 'max:15', new MyRules],
-            'price' => ['required','numeric'],
-            'sale_off' => ['required','numeric'],
-            'description' => ['required','max:50'],
+            'image' => ['mimes:jpg,png', 'required', 'max:500'],
         ];
     }
 

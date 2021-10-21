@@ -6,19 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
-
+use App\Http\Requests\RequestBrand;
 
 class BrandController extends Controller
 {
     protected $modelProduct;
     protected $modelBrand;
     
-
     public function __construct(Product $product, Brand $brand)
-    {
+    {//dd('ok');
         $this->modelProduct = $product;
         $this->modelBrand = $brand;
-
     }
     /**
      * Display a listing of the resource.
@@ -27,7 +25,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
@@ -37,7 +35,12 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user()->name;
+        $brands = $this->modelBrand->get();
+        return view('my-admin.brands.create',[
+            'user' => $user,
+            'brands' => $brands,
+            ]);
     }
 
     /**
@@ -46,9 +49,39 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(RequestBrand $request)
+    { 
+        $data = $request->only([
+            'name',
+            'description',
+        ]);
+        
+        $data['user_id'] = auth()->id();
+        
+        try {
+            $getFile = $request->file('description');
+            //dd( $get_file);
+            if ($getFile) {
+                $getName = $getFile->getClientOriginalName();
+                $nameFile = current(explode('.', $getName));
+                $newFile =  $nameFile . '_' . rand(1,99) . '.' . $getFile->getClientOriginalExtension();
+                $getFile->move('storage/files', $newFile);
+                $data['description'] = $newFile;
+            }
+            $brand = $this->modelBrand->create($data);
+            //dd($brand);
+            return redirect()
+            ->route('admin.brands.show', ['brand' => $brand->id])
+            ->withSuccess('Add brand success!');
+            
+       } catch (\Exception $e) {
+         
+            \Log::error($e);
+
+            return redirect()
+                ->route('admin.products.index')
+                ->withError('Add brand failed. Please try again later!');
+       } 
     }
 
     /**
@@ -60,9 +93,11 @@ class BrandController extends Controller
     public function show($id)
     {
         $brand = $this->modelBrand->findOrFail($id);
-        //dd($product);
+        $products = $brand->products()->get();
+
         return view('my-admin.brands.show', [
             'brand' => $brand,
+            'products' => $products,
         ]);
     }
 
@@ -75,12 +110,10 @@ class BrandController extends Controller
     public function edit($id)
     {
         $brand = $this->modelBrand->findOrFail($id);
-        $products = $this->modelProduct->get();
-        // dd($product);
+        
         return view('my-admin.brands.edit',[
-            'products' => $products,
             'brand' => $brand,
-        ]);   
+        ]);     
     }
 
     /**
@@ -90,9 +123,33 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(RequestBrand $request, $id)
+    {   
+        $brand = $this->modelBrand->findOrFail($id);
+
+        $data = $request->only([
+            'name',
+            'description'
+        ]);
+        //dd($data);
+        $data['user_id'] = auth()->id();
+        
+        try {
+
+            $brand->update($data);
+           
+            return redirect()
+            ->route('admin.brands.show', ['brand' => $brand->id])
+            ->withSuccess('Add brand success!');
+            
+       } catch (\Exception $e) {
+         
+            \Log::error($e);
+
+            return redirect()
+               ->route('admin.products.index')
+               ->withError('Add category failed. Please try again later!');
+       } 
     }
 
     /**
@@ -104,13 +161,13 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $brand = $this->modelBrand->findOrFail($id);
-        //dd($product);
+        //dd($brand);
         
         try {
             $brand->delete();
 
             return redirect()
-                ->route('admin.brands.index')
+                ->route('admin.products.index')
                 ->withSuccess('Delete success!');
 
         } catch (\Exception $e) {
@@ -118,8 +175,8 @@ class BrandController extends Controller
             \Log::error($e);
 
             return redirect()
-                ->route('admin.brands.index')
-                ->withError('Delete failed. Please try again later!');
+                ->route('admin.products.index')
+                ->withError('Delete brand failed. Please try again later!');
         } 
     }
 }
