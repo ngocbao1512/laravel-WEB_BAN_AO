@@ -10,8 +10,6 @@ use App\Models\Brand;
 use App\Models\Image;
 use App\Models\ProductImage;
 use App\Http\Controllers\Auth;
-use App\Http\Requests\RequestBasic;
-
 
 class ProductController extends Controller
 {
@@ -68,7 +66,7 @@ class ProductController extends Controller
     }
 
     
-    public function store(RequestBasic $request)
+    public function store(Request $request)
     {
         $data = $request->only([
             'name',
@@ -110,7 +108,7 @@ class ProductController extends Controller
     {
         $product = $this->modelProduct->findOrFail($id);
         $imageProduct = $product->images()->get();
-        dd($imageProduct);
+        //dd($imageProduct);
         $image = $this->modelImage->get();
         return view('my-admin.products.show', [
             'product' => $product,
@@ -133,7 +131,7 @@ class ProductController extends Controller
     }
 
     
-    public function update(RequestBasic $request, $id)
+    public function update(Request $request, $id)
     {
         $product = $this->modelProduct->findOrFail($id);
         //dd($product);
@@ -149,13 +147,14 @@ class ProductController extends Controller
             'is_public',
         ]);
         //dd($data);
-        $data['category_id'] = (int) $data['category_id'];
+        
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();
-       
+      //  dd($data);
         
-        try {
+        //try {
             $product->update($data);
+
             // $fileImg = $request->file('image');
            
             // if ($fileImg) {
@@ -167,14 +166,14 @@ class ProductController extends Controller
             ->withSuccess('Edit product success!');
             //dd($product);
             
-        } catch (\Exception $e) {
+        // } catch (\Exception $e) {
          
-            \Log::error($e);
+        //     \Log::error($e);
 
-            return redirect()
-                ->route('admin.products.index')
-                ->withError('Edit product failed. Please try again later!');
-        } 
+        //     return redirect()
+        //         ->route('admin.products.index')
+        //         ->withError('Edit product failed. Please try again later!');
+        // } 
     }
 
     
@@ -196,7 +195,7 @@ class ProductController extends Controller
 
             return redirect()
                 ->route('admin.products.index')
-                ->withError('Delete failed. Please try again later!');
+                ->withError('Delete product failed. Please try again later!');
         } 
     }
 }

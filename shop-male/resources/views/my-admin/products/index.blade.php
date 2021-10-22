@@ -1,5 +1,19 @@
 <x-admin-lte>
 
+@if(Session::has('success')) 
+<div class="alert alert-success fade in alert-dismissible show" style="height: 50px;">
+  {{Session::get('success')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true" style="font-size:20px">×</span>
+</div> 
+@endif 
+@if(Session::has('error')) 
+  <div class="alert alert-danger fade in alert-dismissible show" style="height: 50px;">
+  {{Session::get('error')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true" style="font-size:20px">×</span>
+</div>
+  @endif 
   <div class="row ">
     <div class="col-9 tm-block-col">
       <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -30,7 +44,7 @@
                 <td>{{ $product->rate }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->sale_off }}</td>
-                <td>{{ $product->description }}</td>
+                <td>{{ Str::limit($product->description, 50) }}</td>
                 <td>
                   <div class="row" style="margin-right: 2px;">
                     <div class="col-md-4">
@@ -57,7 +71,6 @@
               </tr>
             @endforeach 
             </tbody>
-            
           </table>
         </div>
         <!-- table container -->
@@ -69,7 +82,6 @@
         <div  class="d-flex justify-content-between">
           {{ $products->links('pagination.bootstrap-4') }}
         </div>
-        
       </div>   
     </div>
     <div class="col-3 tm-block-col">
@@ -166,13 +178,13 @@
           </table>
         </div>
         <!-- table container -->
-        <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new brand</a>
+        <a href="{{ route('admin.brands.create') }}" class="btn btn-primary btn-block text-uppercase mb-3">Add new brand</a>
       </div>
     </div>
   </div>
 
-@include('partials.form-delete');
+@include('partials.form-delete')
 
-@include('partials.active-product');
+@include('partials.active-product')
 
 </x-admin-lte>
