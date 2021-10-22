@@ -13,6 +13,7 @@ class Brand extends Model
         'id',
         'name',
         'user_id',
+        'description'
     ];
 
     /* n - 1 */
@@ -22,10 +23,6 @@ class Brand extends Model
     }
 
     /* n - n */
-    public function images()
-    {
-        return $this->morphToMany(Image::class, 'imageable');
-    }
 
     public function products ()
     {

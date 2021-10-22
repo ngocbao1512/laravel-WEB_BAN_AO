@@ -161,8 +161,10 @@
             readURL(this, "#preview_image")
         });
 
+        function removeSpace(str) {
+            return  str.replace(/\s/g, '');
+        }
         
-
         $(".tagname").click(function(){
             var str = removeSpace($("#taginput").val()) + "|" +removeSpace($(this).html());
             $("#taginput").html(str);

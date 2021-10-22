@@ -88,7 +88,6 @@
                   name="image"
                   id="patient_pic"
                   class="btn btn-primary btn-block mx-auto"
-                  value="UPLOAD PRODUCT IMAGE"
                 />
               </div>
             </div>

@@ -41,7 +41,11 @@ class Image extends Model
 
     public function categories()
     {
+<<<<<<< HEAD
         return $this->belongsToMany(Category::class);
+=======
+        return $this->hasOne(Category::class);
+>>>>>>> 9b3f5568e9680f30f87938b2c369f8704648635a
     }
 
     public function brands()

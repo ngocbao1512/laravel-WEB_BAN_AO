@@ -8,14 +8,6 @@ if(!function_exists('arrayTag')) {
     }
 }
 
-/* use to encode imageinputname to save on data */
-if(!function_exists('encodeImage')) {
-    function encodeImage($filename_input)
-    {
-        return Carbon::now('Asia/Ho_Chi_Minh')->toDateString().$filename_input->hashName();
-    }
-}
-
 /* use to show image for blog */
 if(!function_exists('showBlogImage')) {
     function showBlogImage($url)
@@ -29,10 +21,11 @@ if(!function_exists('showBlogImage')) {
     }
 }
 
-if (!function_exists('showImage')) {
-    function showImage($image)
+/* use to encode imageinputname to save on data */
+if(!function_exists('encodeImage')) {
+    function encodeImage($filename_input)
     {
-        return asset('public/images/' . $image);
+        return Carbon::now('Asia/Ho_Chi_Minh')->toDateString().$filename_input->hashName();
     }
 }
 
@@ -59,6 +52,19 @@ if (!function_exists('checkTableBlogTag')) {
            }
        }
        return false;
+    }
+}
+
+/* use to show image for blog */
+if(!function_exists('showImage')) {
+    function showImage($url, $str)
+    {
+        if (strpos($url,'http') !== false ) {
+            return "$url";
+            
+        } else {
+            return  asset('storage/' . $str . '/' .$url);
+        }
     }
 }
 
