@@ -19,11 +19,28 @@
                   {{$blog->user->name}}
                 @endif  {{$blog->created_at}}
             </p>
+<!--
+            <a href="{{route('admin.blogs.edit',['blog'=>$blog->id])}}" class="btn btn-warning text-uppercase mb-3" >edit</a>
 
-            <button class="btn btn-warning text-uppercase mb-3" >edit</button>
-            <button class="btn btn-warning text-uppercase mb-3" >remove this post</button>
-            <input type="checkbox" id="css" name="fav_language" value="CSS">
-            <input type="color" style="height: 50px; width: 50px; border: none;">
+            <a href="{{route('admin.blogs.destroy',['blog'=>$blog->id])}}" class="btn btn-warning text-uppercase mb-3" >remove this post</a>
+-->
+            <form action="{{route('admin.blogs.destroy',['blog'=>$blog->id])}}" method="POST">
+                <a href="{{route('admin.blogs.show',['blog'=>$blog->id])}}" title="show">
+                    <i class="fas fa-eye text-success  fa-lg"></i>
+                </a>
+
+                <a href="{{route('admin.blogs.edit',['blog'=>$blog->id])}}">
+                    <i class="fas fa-edit  fa-lg"></i>
+                </a>
+
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                    <i class="fas fa-trash fa-lg text-danger"></i>
+                </button>
+            </form>
+            <input type="checkbox" id="css" name="blogdlt" value="CSS" style="float:right; width: 40px; height: 40px; margin-top: -45px;">
           </div>  
         @endforeach
 

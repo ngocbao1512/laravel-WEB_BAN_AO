@@ -12,8 +12,7 @@ class Category extends Model
     protected $fillable = [
         'id',
         'name',
-        'user_id',
-        
+        'user_id',        
     ];
 
     /* n - 1 */
@@ -33,6 +32,6 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-
+    
 
 }

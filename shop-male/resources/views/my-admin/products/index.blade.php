@@ -50,7 +50,7 @@
                         data-target="#modal-delete" 
                         data-url="{{ route('admin.products.destroy', ['product' => $product->id]) }}">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                        </button>
+                      </button>
                     </div>
                   </div>
                 </td>

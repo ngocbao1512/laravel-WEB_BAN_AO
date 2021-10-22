@@ -12,7 +12,14 @@ class Image extends Model
     protected $fillable = [
         'id',
         'name',
+        'category_id'
     ];
+
+
+    public function category()
+    {
+        return $this->hasOne(Category::class);
+    }
 
     public function users()
     {
