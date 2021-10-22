@@ -9,6 +9,7 @@ class Tag extends Model
 {
     use HasFactory;
 
+  
     protected $fillable = [
         'name',
         'user_id',
@@ -28,6 +29,6 @@ class Tag extends Model
 
     public function blogs ()
     {
-        return $this->belongsToMany(Blog::class)->using(BlogTag::class);
+        return $this->belongsToMany(Blog::class);
     }
 }

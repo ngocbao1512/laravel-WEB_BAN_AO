@@ -7,8 +7,8 @@
                 <thead>
                     <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">CATEGORY NAME</th>
-                    <th scope="col">CATEGORY IMAGE</th>
+                    <th scope="col">BRAND NAME</th>
+                    <th scope="col">DESCRIPTION</th>
                     <th scope="col">PRODUCT ID</th>
                     <th scope="col">PRODUCT NAME</th>
                     <th scope="col">ACTION</th>
@@ -16,12 +16,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ $category->id }}</td>
-                        <td>{{ $category->name }}</td>
-                        @if ($category->image) 
-                        <td><img src="{{ showImage($category->image, 'categories') }}" alt="" style="width: 100px; height: 100px;"></td> 
+                        <td>{{ $brand->id }}</td>
+                        <td>{{ $brand->name }}</td>
+                        @if ($brand->description)
+                        <td><a target="_blank" href="{{ url('storage/files/' . $brand->description) }}" class="see-file">See File</a></td> 
                         @else
-                        <td>No Image</td>
+                        <td>No File</td>
                         @endif
                     </tr>
                     @foreach ($products as $product)

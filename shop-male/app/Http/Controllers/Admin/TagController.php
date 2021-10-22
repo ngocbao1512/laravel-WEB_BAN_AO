@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class TagController extends Controller
 {
+    protected $modelTag;
+
+    public function __construct(Tag $tag){
+        $this->modelTag = $tag;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +52,13 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        $tag = $this->modelTag->findOrFail($id);
+        $tags = $this->modelTag->all();
+        $blogs = $tag->blogs;
+        return view('my-admin.blogs.index',[
+            'blogs' => $blogs,
+            'tags' => $tags,
+        ]);
     }
 
     /**

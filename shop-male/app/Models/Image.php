@@ -10,35 +10,38 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'image',
+        'id',
+        'name',
+        'category_id'
     ];
 
     public function users()
     {
-        return $this->morphedByMany(User::class, 'imageable');
+        return $this->belongsToMany(User::class);
     }
 
     /**
      * Get all of the videos that are assigned this tag.
      */
-    public function blogs()
+    public function blogs ()
     {
-        return $this->morphedByMany(Blog::class, 'imageable');
+        return $this->belongsToMany(Blog::class);
     }
 
-    public function products()
+    public function products ()
     {
-        return $this->morphedByMany(Product::class, 'imageable');
+        return $this->belongsToMany(Image::class, 'product_images');
     }
 
     public function categories()
     {
-        return $this->morphedByMany(Category::class, 'imageable');
+        return $this->hasOne(Category::class);
     }
 
     public function brands()
     {
-        return $this->morphedByMany(Brand::class, 'imageable');
+        return $this->belongsToMany(Brand::class);
     }
+
 
 }

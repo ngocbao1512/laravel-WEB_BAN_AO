@@ -24,12 +24,13 @@ class Blog extends Model
     /* n - n */
     public function tags ()
     {
-        return $this->belongsToMany(Tag::class)->using(BlogTag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
-    public function images()
-    {
-        return $this->morphToMany(Image::class, 'imageable');
-    }
+     /* n - n */
+     public function images ()
+     {
+         return $this->belongsToMany(Image::class,'blog_images');
+     }
 }
 

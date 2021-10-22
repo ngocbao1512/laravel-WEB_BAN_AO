@@ -5,20 +5,32 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
-use App\Http\Model\Blog;
-use App\Http\Model\Tag;
+use App\Models\Blog;
+use App\Models\Tag;
+use App\Models\Image;
+use App\Models\BlogTag;
+use App\Models\BlogImage;
 
 class BlogController extends Controller
 {
     protected $modelBlog;
     protected $modelTag;
+    protected $modelBlogTag;
+    protected $modelImage;
+    protected $modelBlogImage;
 
-    public function __contruct(
+    public function __construct(
         Blog $blog,
-        Tag $tag
+        Tag $tag,
+        Image $image,
+        BlogTag $blogtag,
+        BlogImage $blogimage
         ){
         $this->modelBlog = $blog;
         $this->modelTag = $tag;
+        $this->modelImage = $image;
+        $this->modelBlogTag = $blogtag;
+        $this->modelBlogImage = $blogimage;
     }
     
     public function index()
@@ -27,32 +39,96 @@ class BlogController extends Controller
         if($blogs == null){
             $blogs = 'have nothing here';
         } else {
-            $blogs = $blogs->paginate(config('blog.paginate10'));
+            $blogs = $blogs->all();
         }
-        $tags = $this->modelTag;
-        $user = auth()->user()->name;
+        $tags = $this->modelTag->all();
 
         return view('my-admin.blogs.index',[
             'blogs' => $blogs,
             'tags' => $tags,
-            'user' => $user,
         ]);
     }
 
     public function create()
     {
+        $tags = $this->modelTag->all();
+        return view('my-admin.blogs.create',[
+            'tags' => $tags,
+        ]);
         
     }
 
    
     public function store(Request $request)
     {
+        $data_blog  = $request->only([
+            'title',
+            'content',
+        ]);
+        $data_blog['user_id'] = auth()->id();
+        $data_tag['user_id'] = auth()->id();
+        $tags = arrayTag($request['tag']);
+        //dd($tags);
+
+        try {
+            /* create table blogs */
+            $data_blog['user_id'] = auth()->id();
+            $new_blog = $this->modelBlog->create($data_blog);
+
+            foreach($tags as $tag)
+            {
+                if($tag != null) 
+                {
+                /* create table tags */
+                $data_tag['name'] = $tag;
+                $new_tag = $this->modelTag->create($data_tag);
+
+                /* create table blog_tags */
+                $data_blogtag['blog_id'] = $new_blog->id;
+                $data_blogtag['tag_id'] = $new_tag->id;
+                $this->modelBlogTag->create($data_blogtag);
+                }
+                
+            }
+
+            /* create table images */
+            $file = $request->file('image');
+            if ($file) {
+               // $file->hashName = encodeImage($file);
+                $image_name = encodeImage($file);
+                $file->move('storage/blogs',$image_name);
+                $data_image['name'] = $image_name;
+                $new_image = $this->modelImage->create($data_image);
+
+                /* create table blog_images */
+                $data_blogimage['blog_id'] = $new_blog->id;
+                $data_blogimage['image_id'] = $new_image->id;
+                $this->modelBlogImage->create($data_blogimage);     
+            }
+            return redirect()
+                ->route('admin.blogs.create')
+                ->with('msg','add success');
+
+        }
+        catch (\Exception $e){
+            \Log::error($e);
+            $error = 'Something went wrong.';
+
+            return redirect()
+            ->route('admin.blogs.create')
+            ->with('error', $error);
+        }         
         
     }
 
     
     public function show($id)
     {
+        $blog = $this->modelBlog->findOrFail($id);
+
+        return view('my-admin.blogs.show',[
+            'blog' => $blog,
+        ]);
         
     }
 

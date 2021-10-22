@@ -1,5 +1,22 @@
 <x-admin-lte>
 
+<<<<<<< HEAD
+=======
+@if(Session::has('success')) 
+<div class="alert alert-success fade in alert-dismissible show" style="height: 50px;">
+  {{Session::get('success')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true" style="font-size:20px">×</span>
+</div> 
+@endif 
+@if(Session::has('error')) 
+  <div class="alert alert-danger fade in alert-dismissible show" style="height: 50px;">
+  {{Session::get('error')}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true" style="font-size:20px">×</span>
+</div>
+  @endif 
+>>>>>>> 9b3f5568e9680f30f87938b2c369f8704648635a
   <div class="row ">
     <div class="col-9 tm-block-col">
       <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -30,7 +47,7 @@
                 <td>{{ $product->rate }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->sale_off }}</td>
-                <td>{{ $product->description }}</td>
+                <td>{{ Str::limit($product->description, 50) }}</td>
                 <td>
                   <div class="row" style="margin-right: 2px;">
                     <div class="col-md-4">
@@ -57,7 +74,6 @@
               </tr>
             @endforeach 
             </tbody>
-            
           </table>
         </div>
         <!-- table container -->
@@ -68,13 +84,6 @@
         </div>
         <div  class="d-flex justify-content-between">
           {{ $products->links('pagination.bootstrap-4') }}
-        </div>
-        <div  class="col-4">
-          <button type="submit" 
-            class="btn btn-primary mb-3 float-right"
-            data-toggle="modal" 
-            data-target="#modal-delete" 
-            data-url="{{ route('admin.products.destroy', ['product' => $product->id]) }}">Delete selected products</button>
         </div>
       </div>   
     </div>
@@ -124,7 +133,7 @@
           </table>
         </div>
         <!-- table container -->
-        <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new category</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-block text-uppercase mb-3">Add new category</a>
       </div>
       <hr style="margin: 24px 0 24px 0">
       <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
@@ -172,13 +181,13 @@
           </table>
         </div>
         <!-- table container -->
-        <a href="/add-product" class="btn btn-primary btn-block text-uppercase mb-3">Add new brand</a>
+        <a href="{{ route('admin.brands.create') }}" class="btn btn-primary btn-block text-uppercase mb-3">Add new brand</a>
       </div>
     </div>
   </div>
 
-@include('partials.form-delete');
+@include('partials.form-delete')
 
-@include('partials.active-product');
+@include('partials.active-product')
 
 </x-admin-lte>
