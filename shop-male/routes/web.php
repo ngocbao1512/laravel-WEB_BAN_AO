@@ -31,7 +31,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/home-page', function () {
     return view('home-page');
-});
+})->name('home-page');
 Route::get('/shop', function () {
     return view('my-directory.shop');
 });

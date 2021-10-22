@@ -64,7 +64,7 @@
                         data-target="#modal-delete" 
                         data-url="{{ route('admin.products.destroy', ['product' => $product->id]) }}">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                        </button>
+                      </button>
                     </div>
                   </div>
                 </td>
@@ -82,6 +82,7 @@
         <div  class="d-flex justify-content-between">
           {{ $products->links('pagination.bootstrap-4') }}
         </div>
+        
       </div>   
     </div>
     <div class="col-3 tm-block-col">

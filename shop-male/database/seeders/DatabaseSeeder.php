@@ -14,6 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 9b3f5568e9680f30f87938b2c369f8704648635a
         
         $this->call([
             ProductSeeder::class,
