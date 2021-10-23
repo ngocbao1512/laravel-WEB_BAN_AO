@@ -12,13 +12,9 @@ class Category extends Model
     protected $fillable = [
         'id',
         'name',
-<<<<<<< HEAD
-        'user_id',        
-=======
         'user_id',
         'image',
         
->>>>>>> 9b3f5568e9680f30f87938b2c369f8704648635a
     ];
 
     /* n - 1 */
