@@ -106,10 +106,10 @@
                                     <li><a href="/shop-details">Shop Details</a></li>
                                     <li><a href="/shop-cart">Shopping Cart</a></li>
                                     <li><a href="/checkout">Check Out</a></li>
-                                    <li><a href="/blog-details">Blog Details</a></li>
+                                    <li><a href="{{route('blogclients.show',['blogclient'=>'100'])}}">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="{{route('blogclients.index')}}">Blog</a></li>
                             <li><a href="/contact">Contacts</a></li>
                         </ul>
                     </nav>

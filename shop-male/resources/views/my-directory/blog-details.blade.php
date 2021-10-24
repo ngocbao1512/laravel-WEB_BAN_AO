@@ -6,11 +6,11 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-9 text-center">
                     <div class="blog__hero__text">
-                        <h2>Are you one of the thousands of Iphone owners who has no idea</h2>
+                        <h2>{{$blog->title}}</h2>
                         <ul>
-                            <li>By Deercreative</li>
-                            <li>February 21, 2019</li>
-                            <li>8 Comments</li>
+                            <li>{{$blog->user->name}}</li>
+                            <li>{{$blog->created_at}}</li>
+                            <li>{{Arr::random([2,5,6,7,9,12,15,17,21,24,34])}} Comments</li>
                         </ul>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-12">
                     <div class="blog__details__pic">
-                        <img src="/male-shop/img/blog/details/blog-details.jpg" alt="">
+                        <img src="{{showImage($blog->images->first()->name,'blogs')}}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -40,10 +40,7 @@
                             </ul>
                         </div>
                         <div class="blog__details__text">
-                            <p>Hydroderm is the highly desired anti-aging cream on the block. This serum restricts the
-                                occurrence of early aging sings on the skin and keeps the skin younger, tighter and
-                                healthier. It reduces the wrinkles and loosening of skin. This cream nourishes the skin
-                                and brings back the glow that had lost in the run of hectic years.</p>
+                            <p>{{$blog->content}}</p>
                             <p>The most essential ingredient that makes hydroderm so effective is Vyo-Serum, which is a
                                 product of natural selected proteins. This concentrate works actively in bringing about
                                 the natural youthful glow of the skin. It tightens the skin along with its moisturizing
@@ -60,10 +57,7 @@
                             <p>Vyo-Serum along with tightening the skin also reduces the fine lines indicating aging of
                                 skin. Problems like dark circles, puffiness, and crow’s feet can be control from the
                                 strong effects of this serum.</p>
-                            <p>Hydroderm is a multi-functional product that helps in reducing the cellulite and giving
-                                the body a toned shape, also helps in cleansing the skin from the root and not letting
-                                the pores clog, nevertheless also let’s sweeps out the wrinkles and all signs of aging
-                                from the sensitive near the eyes.</p>
+                            
                         </div>
                         <div class="blog__details__option">
                             <div class="row">
@@ -73,15 +67,15 @@
                                             <img src="/male-shop/img/blog/details/blog-author.jpg" alt="">
                                         </div>
                                         <div class="blog__details__author__text">
-                                            <h5>Aiden Blair</h5>
+                                            <h5>{{$blog->user->name}}</h5>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="blog__details__tags">
-                                        <a href="#">#Fashion</a>
-                                        <a href="#">#Trending</a>
-                                        <a href="#">#2020</a>
+                                        @foreach ($blog->tags as $tag)
+                                            <a href="#">#{{$tag->name}}</a>
+                                        @endforeach    
                                     </div>
                                 </div>
                             </div>

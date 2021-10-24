@@ -15,102 +15,77 @@
     <!-- Blog Section Begin -->
     <section class="blog spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-1.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 16 February 2020</span>
-                            <h5>What Curling Irons Are The Best Ones</h5>
-                            <a href="#">Read More</a>
+            <div class="row" id="root" >
+                {{-- @foreach ($blogs as $blog)
+                   // <div class="col-lg-4 col-md-6 col-sm-6">
+                      //  <div class="blog__item">
+                            <div class="blog__item__pic set-bg" data-setbg="{{showImage($blog->images->first()->name,'blogs')}}"></div>
+                        //    <div class="blog__item__text">
+                                <span><img src="/male-shop/img/icon/calendar.png" alt=""> {{$blog->created_at}}</span>
+                           //     <h5>{{$blog->title}}</h5>
+                             /   <a href="{{route('blogs.show',['blog'=>$blog->id])}}">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-2.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 21 February 2020</span>
-                            <h5>Eternity Bands Do Last Forever</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-3.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 28 February 2020</span>
-                            <h5>The Health Benefits Of Sunglasses</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-4.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 16 February 2020</span>
-                            <h5>Aiming For Higher The Mastopexy</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-5.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 21 February 2020</span>
-                            <h5>Wedding Rings A Gift For A Lifetime</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-6.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 28 February 2020</span>
-                            <h5>The Different Methods Of Hair Removal</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-7.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 16 February 2020</span>
-                            <h5>Hoop Earrings A Style From History</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-8.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 21 February 2020</span>
-                            <h5>Lasik Eye Surgery Are You Ready</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-9.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 28 February 2020</span>
-                            <h5>Lasik Eye Surgery Are You Ready</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach --}}
+                <script>
+                    const root = document.getElementById('root')
+
+                    var request = new XMLHttpRequest()
+
+                    // Open a new connection, using the GET request on the URL endpoint
+                    request.open('GET','http://baobao:8000/api/blogs', true)
+
+                    request.onload = function () {
+                        // Begin accessing JSON data here
+                        var data = JSON.parse(this.response)
+                        console.log(data);
+
+                        if (request.status >= 200 && request.status < 400) {
+                            
+                            data.data.data.forEach((data) => {
+                            const card = document.createElement('div')
+                            card.setAttribute('class', 'col-lg-4 col-md-6 col-sm-6')
+                            const blog__item = document.createElement('div')                            
+                            blog__item.setAttribute('class', 'blog__item')
+                            const created_at = document.createElement('span')
+                            created_at.textContent = data.created_at
+                            const img = document.createElement('div')
+                            img.setAttribute('class', 'blog__item__pic set-bg')
+                            img.setAttribute('data-setbg',data.image)
+                            const linkimg = data.image
+                            const str = "url("+linkimg+")"
+                            img.style.backgroundImage = str
+                            console.log(img)
+                            const blog__item__text = document.createElement('div')
+                            blog__item__text.setAttribute('class','blog__item__text')
+                            const title = document.createElement('h5')
+                            title.textContent = data.title
+                            const a = document.createElement('a')
+                            a.textContent = 'Read More'
+
+                            root.appendChild(card)
+                            card.appendChild(blog__item)
+                            blog__item.appendChild(img)
+                            blog__item.appendChild(blog__item__text)
+                            blog__item__text.appendChild(created_at)
+                            blog__item__text.appendChild(title)
+                            blog__item__text.appendChild(a)
+                            })
+                        } else {
+                            console.log('error')
+                        }
+                    }
+
+                    request.send()
+                </script>
+            </div>
+            <div class="row" style="display: flex; justify-content: center; align-item: center;">
+                <button href="#" style=" border: 1px solid black; padding : 4px 25px; border-radius: 14px; color: black;">More</button>
             </div>
         </div>
     </section>
     <!-- Blog Section End -->
-
     <!-- Footer Section Begin -->
     <footer class="footer">
         <div class="container">

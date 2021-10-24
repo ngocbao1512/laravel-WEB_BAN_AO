@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
+use App\Http\Controllers\Client\BlogClientController as BlogClient;
+/* client */
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +49,7 @@ Route::get('/shop-cart', function () {
 Route::get('/checkout', function () {
     return view('my-directory.checkout');
 });
-Route::get('/blog', function () {
-    return view('my-directory.blog');
-});
-Route::get('/blog-details', function () {
-    return view('my-directory.blog-details');
-});
+
 Route::get('/contact', function () {
     return view('my-directory.contact');
 });
@@ -76,3 +73,14 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::resource('tags', AdminTagController::class);
     
 });
+
+/* client */
+
+
+/* Route::get('/blog-details', function () {
+    return view('my-directory.blog-details');
+}); */
+
+Route::resource('/blogclients',BlogClient::class)->only([
+    'index','show'
+]);

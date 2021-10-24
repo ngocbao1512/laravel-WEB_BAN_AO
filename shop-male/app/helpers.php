@@ -59,8 +59,8 @@ if (!function_exists('checkTableBlogTag')) {
 if(!function_exists('showImage')) {
     function showImage($url, $str)
     {
-        if (strpos($url,'http') !== false ) {
-            return "$url";
+        if ($url == null) {
+            return "http://beepeers.com/assets/images/commerces/default-image.jpg";
             
         } else {
             return  asset('storage/' . $str . '/' .$url);
