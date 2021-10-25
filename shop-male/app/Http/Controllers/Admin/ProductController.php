@@ -79,7 +79,6 @@ class ProductController extends Controller
             'sale_off',
             'is_public',
         ]);
-
         $data['category_id'] = (int) $data['category_id'];
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();

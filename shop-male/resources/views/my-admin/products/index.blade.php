@@ -188,4 +188,5 @@
 
 @include('partials.active-product')
 
+@include('partials.add-image')
 </x-admin-lte>
