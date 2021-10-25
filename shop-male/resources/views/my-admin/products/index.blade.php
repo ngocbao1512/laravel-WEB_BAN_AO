@@ -1,7 +1,5 @@
 <x-admin-lte>
 
-<<<<<<< HEAD
-=======
 @if(Session::has('success')) 
 <div class="alert alert-success fade in alert-dismissible show" style="height: 50px;">
   {{Session::get('success')}}
@@ -16,7 +14,6 @@
   <span aria-hidden="true" style="font-size:20px">×</span>
 </div>
   @endif 
->>>>>>> 9b3f5568e9680f30f87938b2c369f8704648635a
   <div class="row ">
     <div class="col-9 tm-block-col">
       <div class="tm-bg-primary-dark tm-block tm-block-products">
@@ -190,4 +187,5 @@
 
 @include('partials.active-product')
 
+@include('partials.add-image')
 </x-admin-lte>

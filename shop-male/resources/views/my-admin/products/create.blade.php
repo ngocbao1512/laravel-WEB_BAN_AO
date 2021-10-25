@@ -80,15 +80,23 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-dummy mx-auto">
-                <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 240px;"/>
+                <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 150px;"/>
               </div>
-              <div class="custom-file mt-3 mb-3">
+              <div class="input-group mb-3">
+                <button class="btn btn-primary click-upload-image" type="button">Upload Image</button>
+                <div type="text" class="form-control show-name-image"></div>
                 <input
                   type="file"
                   name="image"
                   id="patient_pic"
-                  class="btn btn-primary btn-block mx-auto"
+                  class="btn btn-primary btn-block mx-auto upload-image"
                 />
+              </div>
+              <hr>
+              <div class="row mx-auto">
+              <input type="text" name="size" class="col-5 form-control" placeholder="Enter size">
+              <input type="text" name="qunatity-size" class="col-5 form-control" placeholder="Enter quantity size">
+              <button type="button" class="btn btn-primary col-2 add-more-input" >+</button>
               </div>
             </div>
             <div class="form-group col-xs-12 col-sm-6">
@@ -112,4 +120,23 @@
 @include('partials.active-product')
 
 @include('partials.readFileImg')
+
+@include('partials.add-image')
+
+@include('partials.show-name-image')
+
+
+
+@section('addInput')
+<script>
+  $(document).ready(function() {
+    $(document).on('click', '.add-more-input', function(){
+      var add = '<input type="text" name="size" class="col-5 form-control" placeholder="Enter size" style="margin-top:1px">'
+      + '<input type="text" name="qunatity-size" class="col-5 form-control" placeholder="Enter quantity size" style="margin-top:1px">';
+      $(this).parent().append(add);
+    });
+  });
+</script> 
+@endsection
+
 </x-admin-lte>

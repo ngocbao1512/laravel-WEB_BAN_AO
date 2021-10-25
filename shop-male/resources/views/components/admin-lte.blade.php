@@ -125,6 +125,9 @@
     </script>
      @yield('script') 
      @yield('image') 
+     @yield('addImage') 
+     @yield('showNameImage') 
+     @yield('addInput')
 </body>
 
 </html>

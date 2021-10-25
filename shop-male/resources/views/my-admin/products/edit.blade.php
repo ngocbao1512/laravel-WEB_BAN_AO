@@ -63,18 +63,18 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-dummy mx-auto">
-                <i
-                  class="fas fa-cloud-upload-alt tm-upload-icon"
-                  onclick="document.getElementById('fileInput').click();"
-                ></i>
+              <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 150px;"/>
+              </div>
+              <div class="input-group mb-3">
+                <button class="btn btn-primary click-upload-image" type="button">Upload Image</button>
+                <div type="text" class="form-control show-name-image"></div>
               </div>
               <div class="custom-file mt-3 mb-3">
-                <input id="fileInput" type="file" style="display:none;" name="image" />
                 <input
-                  type="button"
-                  class="btn btn-primary btn-block mx-auto"
-                  value="UPLOAD PRODUCT IMAGE"
-                  onclick="document.getElementById('fileInput').click();"
+                  type="file"
+                  name="image"
+                  id="patient_pic"
+                  class="btn btn-primary btn-block mx-auto upload-image"
                 />
               </div>
             </div>
@@ -96,6 +96,12 @@
     </div>
   </div>
 
-@include('partials.active-product');
+@include('partials.active-product')
+
+@include('partials.readFileImg')
+
+@include('partials.add-image')
+
+@include('partials.show-name-image')
 
 </x-admin-lte>
