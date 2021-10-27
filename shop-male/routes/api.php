@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\BlogController;
+use App\Http\Controllers\Client\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('blogs', BlogController::class)->only([
+    'index', 'show'
+]);
+
+Route::resource('products', ProductController::class)->only([
     'index', 'show'
 ]);
  

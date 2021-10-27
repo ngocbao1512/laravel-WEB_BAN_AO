@@ -79,24 +79,71 @@
                 
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-              <div class="tm-product-img-dummy mx-auto">
-                <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 150px;"/>
+              <div class="row">
+                <div class="mx-auto col-xl-3 col-lg-3 ">
+                  <div class="tm-product-img-dummy">
+                  <img id="preview_image1" src="#" alt="" style="max-width: 100%; max-height: 100%;"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input
+                      type="file"
+                      name="image1"
+                      id="patient_pic1"
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+                    />
+                  </div>
+                </div>
+
+                <div class="mx-auto col-xl-3 col-lg-3 ">
+                  <div class="tm-product-img-dummy">
+                  <img id="preview_image2" src="#" alt="" style="max-width: 100%; max-height: 100%;"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input
+                      type="file"
+                      name="image2"
+                      id="patient_pic2"
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+                    />
+                  </div>
+                </div>
+
+                <div class="mx-auto col-xl-3 col-lg-3 ">
+                  <div class="tm-product-img-dummy">
+                  <img id="preview_image3" src="#" alt="" style="max-width: 100%; max-height: 100%;"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input
+                      type="file"
+                      name="image3"
+                      id="patient_pic3"
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+                    />
+                  </div>
+                </div>
+
+                <div class="mx-auto col-xl-3 col-lg-3 ">
+                  <div class="tm-product-img-dummy">
+                  <img id="preview_image4" src="#" alt="" style="max-width: 100%; max-height: 100%;"/>
+                  </div>
+                  <div class="input-group mb-3">
+                    <input
+                      type="file"
+                      name="image4"
+                      id="patient_pic4"
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+                    />
+                  </div>
+                </div>
+                
+                
               </div>
-              <div class="input-group mb-3">
-                <button class="btn btn-primary click-upload-image" type="button">Upload Image</button>
-                <div type="text" class="form-control show-name-image"></div>
-                <input
-                  type="file"
-                  name="image"
-                  id="patient_pic"
-                  class="btn btn-primary btn-block mx-auto upload-image"
-                />
-              </div>
+              
               <hr>
               <div class="row mx-auto">
-              <input type="text" name="size" class="col-5 form-control" placeholder="Enter size">
-              <input type="text" name="qunatity-size" class="col-5 form-control" placeholder="Enter quantity size">
-              <button type="button" class="btn btn-primary col-2 add-more-input" >+</button>
+              <p type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" onkeyup="getsize()">ddd</p>
+              <p type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" onkeyup="getquantity()"></p>
+              <p type="button" class="btn btn-primary col-3 add-more-input" style="margin-left: 10px; background-color: transparent;">+</p>
               </div>
             </div>
             <div class="form-group col-xs-12 col-sm-6">
@@ -125,18 +172,37 @@
 
 @include('partials.show-name-image')
 
+@include('partials.getvaluesize')
+
 
 
 @section('addInput')
 <script>
   $(document).ready(function() {
     $(document).on('click', '.add-more-input', function(){
-      var add = '<input type="text" name="size" class="col-5 form-control" placeholder="Enter size" style="margin-top:1px">'
-      + '<input type="text" name="qunatity-size" class="col-5 form-control" placeholder="Enter quantity size" style="margin-top:1px">';
+      var add = '<p type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" onkeyup="getsize()"></p>'
+      + ' <p type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" onkeyup="getquantity()"></p>';
       $(this).parent().append(add);
     });
+
+
+    // get value size 
   });
 </script> 
 @endsection
+
+<script>
+      console.log('ok');
+      
+     function getsize()
+     {
+        console.log($('.getsize')[2].innerHTML)
+     }
+
+     function getquantity()
+     {
+         console.log(document.getElementsByClassName('quantitysize').innerHTML)
+     }
+</script>
 
 </x-admin-lte>

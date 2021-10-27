@@ -16,25 +16,17 @@
     <section class="blog spad">
         <div class="container">
             <div class="row" id="root" >
-                {{-- @foreach ($blogs as $blog)
-                   // <div class="col-lg-4 col-md-6 col-sm-6">
-                      //  <div class="blog__item">
-                            <div class="blog__item__pic set-bg" data-setbg="{{showImage($blog->images->first()->name,'blogs')}}"></div>
-                        //    <div class="blog__item__text">
-                                <span><img src="/male-shop/img/icon/calendar.png" alt=""> {{$blog->created_at}}</span>
-                           //     <h5>{{$blog->title}}</h5>
-                             /   <a href="{{route('blogs.show',['blog'=>$blog->id])}}">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
                 <script>
                     const root = document.getElementById('root')
 
                     var request = new XMLHttpRequest()
 
-                    // Open a new connection, using the GET request on the URL endpoint
-                    request.open('GET','http://baobao:8000/api/blogs', true)
+                    var urlconnectdata = <?php
+                    $linkconnect = "'".route('blogs.index')."'"; 
+                    echo($linkconnect);
+                    ?>
+
+                    request.open('GET',urlconnectdata,true)
 
                     request.onload = function () {
                         // Begin accessing JSON data here
@@ -56,12 +48,14 @@
                             const linkimg = data.image
                             const str = "url("+linkimg+")"
                             img.style.backgroundImage = str
-                            console.log(img)
                             const blog__item__text = document.createElement('div')
                             blog__item__text.setAttribute('class','blog__item__text')
                             const title = document.createElement('h5')
                             title.textContent = data.title
                             const a = document.createElement('a')
+                            
+                            a.setAttribute('href',"http://baobao:8000/blogclients/"+data.id+"")
+
                             a.textContent = 'Read More'
 
                             root.appendChild(card)
@@ -71,7 +65,24 @@
                             blog__item__text.appendChild(created_at)
                             blog__item__text.appendChild(title)
                             blog__item__text.appendChild(a)
-                            })
+                            } 
+                            )
+
+                            var btnmore = document.getElementById("btnmore")
+                            console.log(btnmore)
+                            btnmore.addEventListener("click", function() {
+                                console.log('ok');
+                                urlconnectdata = data.data.links.nextpage
+                                request.open('GET',urlconnectdata,true)
+                                request.onload = function () {
+                                // Begin accessing JSON data here
+                                var data = JSON.parse(this.response)
+                                console.log(data);
+                                }
+                                
+                            });
+                            console.log(data.data.links.nextpage)
+
                         } else {
                             console.log('error')
                         }
@@ -81,7 +92,8 @@
                 </script>
             </div>
             <div class="row" style="display: flex; justify-content: center; align-item: center;">
-                <button href="#" style=" border: 1px solid black; padding : 4px 25px; border-radius: 14px; color: black;">More</button>
+                <button style=" border: 1px solid black; padding : 4px 25px; border-radius: 14px; color: black;" id="btnmore">More</button>
+
             </div>
         </div>
     </section>
