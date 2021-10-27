@@ -19,7 +19,7 @@ class BlogClientController extends Controller
 
     public function show($id)
     {
-        dd('ok');
+        return view('my-directory.blog-details',['id' => $id]);
     }
 
     public function update(Request $request, $id)

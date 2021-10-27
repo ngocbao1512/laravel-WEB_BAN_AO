@@ -11,12 +11,13 @@ class Size extends Model
 
     protected $fillable = [
         'name',
+        'quantity',
     ];
 
     /* n - n */
     public function products ()
     {
-        return $this->belongsToMany(Product::class)->using(ProductColorSize::class);
+        return $this->belongsToMany(Product::class)->using(ProducSize::class);
     }
 
     

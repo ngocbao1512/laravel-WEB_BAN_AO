@@ -16,12 +16,13 @@ class BlogResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
             'created_at' => $this->created_at,
             'user_name' => $this->user->name,
             'tags' => TagResource::collection($this->tags),
-            'image' => showImage($this->images->first()->name,'blogs'),
+            'images' => showImage($this->images->first()->name,'blogs'),
         ];
     }
 }

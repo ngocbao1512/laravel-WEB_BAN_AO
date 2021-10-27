@@ -12,8 +12,21 @@
          }
      }
     
-    $("#patient_pic").on("change",function(){
-        readURL(this, "#preview_image")
+    $("#patient_pic1").on("change",function(){
+        readURL(this, "#preview_image1")
     });
+
+    $("#patient_pic2").on("change",function(){
+        readURL(this, "#preview_image2")
+    });
+
+    $("#patient_pic3").on("change",function(){
+        readURL(this, "#preview_image3")
+    });
+
+    $("#patient_pic4").on("change",function(){
+        readURL(this, "#preview_image4")
+    });
+
 </script> 
 @endsection
