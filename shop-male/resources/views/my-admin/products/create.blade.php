@@ -89,7 +89,11 @@
                       type="file"
                       name="image1"
                       id="patient_pic1"
+<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -103,7 +107,11 @@
                       type="file"
                       name="image2"
                       id="patient_pic2"
+<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -117,7 +125,11 @@
                       type="file"
                       name="image3"
                       id="patient_pic3"
+<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -131,7 +143,11 @@
                       type="file"
                       name="image4"
                       id="patient_pic4"
+<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
+                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>

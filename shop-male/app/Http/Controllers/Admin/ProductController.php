@@ -75,7 +75,6 @@ class ProductController extends Controller
             'sale_off',
             'is_public',
         ]);
-
         $data['category_id'] = (int) $data['category_id'];
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();
@@ -87,7 +86,7 @@ class ProductController extends Controller
         $data['quantity'] = $quantity;
 
         
-        //try {
+        try {
             // create table product 
             $newProduct = $this->modelProduct->create($data);
 
@@ -113,14 +112,14 @@ class ProductController extends Controller
             ->route('admin.products.show', ['product' => $newProduct->id])
             ->withSuccess('Add product success!');
             
-       /* } catch (\Exception $e) {
+        } catch (\Exception $e) {
          
             \Log::error($e);
 
             return redirect()
                 ->route('admin.products.index')
                 ->withError('Add product failed. Please try again later!');
-        } */
+        } 
     }
 
     
