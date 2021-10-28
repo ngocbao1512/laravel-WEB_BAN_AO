@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('price')->nullable();
             $table->integer('quantity')->nullable();
-            $table->tinyinteger('rate')->nullable();
+            $table->tinyinteger('rate')->nullable()->default(0);
             $table->integer('sold')->default(0);
             $table->integer('sale_off')->default(0);
             $table->boolean('is_public')->default(1);

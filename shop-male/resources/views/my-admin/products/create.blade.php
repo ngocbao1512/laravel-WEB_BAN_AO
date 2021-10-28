@@ -89,7 +89,11 @@
                       type="file"
                       name="image1"
                       id="patient_pic1"
+<<<<<<< HEAD
+                      class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
                       class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -103,7 +107,11 @@
                       type="file"
                       name="image2"
                       id="patient_pic2"
+<<<<<<< HEAD
+                      class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
                       class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -117,7 +125,11 @@
                       type="file"
                       name="image3"
                       id="patient_pic3"
+<<<<<<< HEAD
+                      class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
                       class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -131,7 +143,11 @@
                       type="file"
                       name="image4"
                       id="patient_pic4"
+<<<<<<< HEAD
+                      class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
+=======
                       class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
+>>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -141,9 +157,10 @@
               
               <hr>
               <div class="row mx-auto">
-              <p type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" onkeyup="getsize()">ddd</p>
-              <p type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" onkeyup="getquantity()"></p>
-              <p type="button" class="btn btn-primary col-3 add-more-input" style="margin-left: 10px; background-color: transparent;">+</p>
+              <input type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" ">
+              <input type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >
+              <a type="button" class="btn btn-primary col-3 add-more-input" style="margin-left: 10px; background-color: transparent; color:white">+</a>
+              <a type="button" class="btn btn-primary col-3 test" style="margin-left: 10px; background-color: transparent; color:white">Test</a>
               </div>
             </div>
             <div class="form-group col-xs-12 col-sm-6">
@@ -172,37 +189,35 @@
 
 @include('partials.show-name-image')
 
-@include('partials.getvaluesize')
-
-
-
 @section('addInput')
 <script>
   $(document).ready(function() {
-    $(document).on('click', '.add-more-input', function(){
-      var add = '<p type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" onkeyup="getsize()"></p>'
-      + ' <p type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" onkeyup="getquantity()"></p>';
+    $('.add-more-input').click(function() {
+      var add = '<input type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" "></p>'
+      + ' <input type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >';
       $(this).parent().append(add);
     });
-
-
-    // get value size 
-  });
+    
+    $('.test').click(function() {
+      var size = $("input[name^='size']");
+      var quantitySize = $("input[name^='quantity-size']");
+      var n = $("input[name^= 'size']").length;
+      
+      for(i=0;i<n;i++)
+      {
+      var valSize= size.eq(i).val();
+      console.log(valSize);
+      
+      var valQuantitySize= quantitySize.eq(i).val();
+      console.log(valQuantitySize);
+      }
+      var arr =[valSize, valQuantitySize];
+      console.log(arr);
+      });
+    });
 </script> 
 @endsection
 
-<script>
-      console.log('ok');
-      
-     function getsize()
-     {
-        console.log($('.getsize')[2].innerHTML)
-     }
 
-     function getquantity()
-     {
-         console.log(document.getElementsByClassName('quantitysize').innerHTML)
-     }
-</script>
 
 </x-admin-lte>

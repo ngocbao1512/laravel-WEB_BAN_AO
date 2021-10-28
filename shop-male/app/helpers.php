@@ -57,13 +57,13 @@ if (!function_exists('checkTableBlogTag')) {
 
 /* use to show image for blog */
 if(!function_exists('showImage')) {
-    function showImage($url, $str)
+    function showImage($linkimage, $foldername)
     {
-        if ($url == null) {
+        if ($linkimage == null) {
             return "http://beepeers.com/assets/images/commerces/default-image.jpg";
             
         } else {
-            return  asset('storage/' . $str . '/' .$url);
+            return  asset('storage/' . $linkimage . '/' .$foldername);
         }
     }
 }
