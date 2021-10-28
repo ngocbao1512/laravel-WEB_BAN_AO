@@ -17,7 +17,6 @@ class ProductController extends Controller
     protected $modelCategory;
     protected $modelBrand;
     protected $modelImage;
-    protected $modelProductImage;
 
     public function __construct(Product $product, Category $categories, Brand $brand,  Image $image, ProductImage $productImage)
     {
@@ -25,7 +24,6 @@ class ProductController extends Controller
         $this->modelCategory = $categories;
         $this->modelBrand = $brand;
         $this->modelImage = $image;
-        $this->modelImage = $productImage;
     }
     
     public function index()
@@ -70,37 +68,59 @@ class ProductController extends Controller
     {
         $data = $request->only([
             'name',
-            'user_id',
             'category_id',
             'brand_id',
             'description',
             'price',
-            'quantity',
             'sale_off',
             'is_public',
         ]);
-        dd($request);
+
         $data['category_id'] = (int) $data['category_id'];
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();
-       
+
+        $quantity = 0;
+
+        // xử lý size lấy quantity 
+
+        $data['quantity'] = $quantity;
+
         
-        try {
+        //try {
+            // create table product 
             $newProduct = $this->modelProduct->create($data);
 
+            // create table image 
+            $files = $request->file();
+            //dd($files);
+            if ($files) {
+                foreach($files as $file)
+                {
+                    $image_name = encodeImage($file);
+                    $file->move('storage/products',$image_name);
+                    $data_image['name'] = $image_name;
+                    $new_image = $this->modelImage->create($data_image);
 
+                    // create table productimage 
+                   $newProduct->images()->save($new_image);
+                }
+            }
+            // dd(encodeImage($files['image4']));
+    
+            // create table size 
             return redirect()
-            ->route('admin.products.show', ['product' => $product->id])
+            ->route('admin.products.show', ['product' => $newProduct->id])
             ->withSuccess('Add product success!');
             
-        } catch (\Exception $e) {
+       /* } catch (\Exception $e) {
          
             \Log::error($e);
 
             return redirect()
                 ->route('admin.products.index')
                 ->withError('Add product failed. Please try again later!');
-        } 
+        } */
     }
 
     
