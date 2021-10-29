@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Image;
+use App\Models\Size;
 use App\Models\ProductImage;
 use App\Http\Controllers\Auth;
 
@@ -17,13 +18,22 @@ class ProductController extends Controller
     protected $modelCategory;
     protected $modelBrand;
     protected $modelImage;
+    protected $modelSize;
 
-    public function __construct(Product $product, Category $categories, Brand $brand,  Image $image, ProductImage $productImage)
+    public function __construct(
+        Product $product,
+        Category $categories,
+        Brand $brand,  
+        Image $image,
+        ProductImage $productImage,
+        Size $size
+        )
     {
         $this->modelProduct = $product;
         $this->modelCategory = $categories;
         $this->modelBrand = $brand;
         $this->modelImage = $image;
+        $this->modelSize = $size;
     }
     
     public function index()
@@ -82,6 +92,8 @@ class ProductController extends Controller
         $quantity = 0;
 
         // xử lý size lấy quantity 
+        $quantitySize = mergeTwoArray($request->arrsize, $request->arrquantity);
+        $quantity = sumOfArr($quantitySize);
 
         $data['quantity'] = $quantity;
 
@@ -92,7 +104,6 @@ class ProductController extends Controller
 
             // create table image 
             $files = $request->file();
-            //dd($files);
             if ($files) {
                 foreach($files as $file)
                 {
@@ -105,9 +116,20 @@ class ProductController extends Controller
                    $newProduct->images()->save($new_image);
                 }
             }
-            // dd(encodeImage($files['image4']));
     
+           // dd($quantitySize);
             // create table size 
+            foreach($quantitySize as $key => $size)
+            {
+                $datasize['name'] = $key;
+                $datasize['quantity'] = (int)$size;
+                $newSize = $this->modelSize->create($datasize);
+
+                // create table productsize 
+                $newProduct->sizes()->save($newSize);
+            }
+
+
             return redirect()
             ->route('admin.products.show', ['product' => $newProduct->id])
             ->withSuccess('Add product success!');

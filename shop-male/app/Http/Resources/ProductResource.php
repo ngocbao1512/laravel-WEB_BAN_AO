@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
             'category' => $this->category->name,
             'image' => ImageResource::collection($this->images),
             //'tags' => TagResource::collection($this->tags),
-            //'sizes' => SizeResource::collection($this->sizes),
+            'sizes' => SizeResource::collection($this->sizes),
  
         ];
     }

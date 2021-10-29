@@ -2,21 +2,22 @@
  
   <div class="container" style="margin-top: 30px">
     <div class="row">
+      <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
+
       <div class="col-12 mx-auto">
       <div class="float-center">
-              <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Add Product</p>
+              <p class="tm-block-title d-inline-block float-center" style="font-size: 30px" >Add Product</p>
       </div>
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">
-            <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
-            @csrf
-                <div class="form-group ">
+              @csrf
+              <div class="form-group ">
                 <div class="row">
                    <div class=" col-xs-12 col-sm-6">
                     <label for="name"><b>Product Name</b></label>
                     <input id="name" name="name" type="text" placeholder="Enter product name" class="form-control validate  @error('name') is-invalid @enderror" />
-                    @error('name')
+                      @error('name')
                       @if ($errors->has('name'))
                         <p style="color:yellow; font-size:12px; ">{{ $errors->first('name') }}</p>
                       @endif
@@ -89,11 +90,8 @@
                       type="file"
                       name="image1"
                       id="patient_pic1"
-<<<<<<< HEAD
+
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-=======
-                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
->>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -107,11 +105,9 @@
                       type="file"
                       name="image2"
                       id="patient_pic2"
-<<<<<<< HEAD
+
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-=======
-                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
->>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
+
                     />
                   </div>
                 </div>
@@ -125,11 +121,7 @@
                       type="file"
                       name="image3"
                       id="patient_pic3"
-<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-=======
-                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
->>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -143,11 +135,8 @@
                       type="file"
                       name="image4"
                       id="patient_pic4"
-<<<<<<< HEAD
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-=======
                       class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
->>>>>>> c6255d014f910ef5076365e910034e695bb84ea8
                     />
                   </div>
                 </div>
@@ -157,10 +146,15 @@
               
               <hr>
               <div class="row mx-auto">
-              <input type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" ">
-              <input type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >
-              <a type="button" class="btn btn-primary col-3 add-more-input" style="margin-left: 10px; background-color: transparent; color:white">+</a>
-              <a type="button" class="btn btn-primary col-3 test" style="margin-left: 10px; background-color: transparent; color:white">Test</a>
+                <div class="row " id="add-more-collumn-size">
+                  <input type="text" name="size" class="col-5 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px; ">
+                  <input type="text" name="quantity-size" class="col-5 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >
+                </div>
+                <div class="row">
+                  <a type="button" class="btn btn-primary col-4 add-more-input" style="margin-left: 10px; background-color: transparent; color:white">+</a>
+                  <a type="button" class="btn btn-primary col-4 test" style="margin-left: 10px; background-color: transparent; color:white">save</a>
+    
+                </div>
               </div>
             </div>
             <div class="form-group col-xs-12 col-sm-6">
@@ -172,13 +166,17 @@
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block text-uppercase" style="color:white">Add Product</button>
+              <button type="submit" class="btn btn-primary btn-block text-uppercase" style="color:white" id="sendrequest">Add Product</button>
             </div>
-            </form>
+            
           </div>
         </div>
+</form>
+
       </div>
+    
     </div>
+ 
   </div>
   
 @include('partials.active-product')
@@ -192,29 +190,52 @@
 @section('addInput')
 <script>
   $(document).ready(function() {
-    $('.add-more-input').click(function() {
-      var add = '<input type="text" name="size" class="col-4 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;" "></p>'
-      + ' <input type="text" name="quantity-size" class="col-4 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >';
-      $(this).parent().append(add);
-    });
-    
-    $('.test').click(function() {
-      var size = $("input[name^='size']");
-      var quantitySize = $("input[name^='quantity-size']");
-      var n = $("input[name^= 'size']").length;
-      
-      for(i=0;i<n;i++)
-      {
-      var valSize= size.eq(i).val();
-      console.log(valSize);
-      
-      var valQuantitySize= quantitySize.eq(i).val();
-      console.log(valQuantitySize);
-      }
-      var arr =[valSize, valQuantitySize];
-      console.log(arr);
+      $('.add-more-input').click(function() {
+        var add = '<input type="text" name="size" class="col-5 form-control getsize" placeholder="Enter size" contenteditable style="margin-right: 2px;">'
+        +  '<input type="text" name="quantity-size" class="col-5 form-control quantitysize" placeholder="Enter quantity size" contenteditable style="margin-left: 2px;" >';
+        $("#add-more-collumn-size").append(add);
       });
-    });
+    
+      /* get value size to string then stick it to value an hidden input */
+      $('.test').click(function() {
+        var size = $("input[name^='size']");
+        var quantitySize = $("input[name^='quantity-size']");
+        var n = $("input[name^= 'size']").length;
+        var valuesize = ""
+        var valuequantity = ""
+        
+        for(i=0;i<n;i++)
+        {
+          valuesize += size.eq(i).val() + "|"
+
+          valuequantity += quantitySize.eq(i).val() + "|"
+
+        }
+
+        var size = document.createElement('input')
+        var quantity = document.createElement('input')
+        
+        size.setAttribute('name', 'arrsize')
+        size.setAttribute('type', 'text')
+        size.style.display = "none"
+        size.value = valuesize
+
+        quantity.setAttribute('name', 'arrquantity')
+        quantity.setAttribute('type', 'text')
+        quantity.style.display = "none"
+        quantity.value = valuequantity
+
+
+
+        var button = document.getElementById('sendrequest')
+
+        button.appendChild(size)
+        button.appendChild(quantity)
+
+
+      });
+
+  });
 </script> 
 @endsection
 

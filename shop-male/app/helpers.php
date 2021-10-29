@@ -8,6 +8,35 @@ if(!function_exists('arrayTag')) {
     }
 }
 
+// ex input : s:4|x:5|xs:9
+if(!function_exists('mergeTwoArray')) {
+    function mergeTwoArray($key, $value)
+    {
+        $arrkey = explode('|',$key);
+        $arrvalue = explode('|',$value);
+        $arrresult = [];
+        for($i = 0; $i < count($arrkey) - 1; $i++)
+        {
+            $arrresult[$arrkey[$i]] = $arrvalue[$i];
+        }
+
+        return $arrresult;
+    }
+}
+
+if(!function_exists('sumOfArr')) {
+    function sumOfArr($arrinput)
+    {
+        $sum = 0;
+        foreach($arrinput as $number)
+        {
+            $sum += (int)$number;
+        }
+
+        return $sum;
+    }
+}
+
 /* use to show image for blog */
 if(!function_exists('showBlogImage')) {
     function showBlogImage($url)

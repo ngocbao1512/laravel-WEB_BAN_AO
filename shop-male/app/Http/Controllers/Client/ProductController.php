@@ -22,7 +22,7 @@ class ProductController extends Controller
         $products = $this->modelProduct
         ->with('brand','category')
         ->orderBy('id', 'DESC')
-        ->paginate(config('product.paginate9'));
+        ->get();
         
         
         $productcollection = new ProductCollection(

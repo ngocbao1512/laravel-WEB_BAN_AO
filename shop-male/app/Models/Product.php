@@ -55,7 +55,7 @@ class Product extends Model
 
     public function sizes ()
     {
-        return $this->belongsToMany(Size::class)->using(ProductSize::class);
+        return $this->belongsToMany(Size::class, 'product_sizes');
     }
 
     public function images ()

@@ -16,11 +16,6 @@ class ProductCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'links' => [
-                'currentpage' => $this->currentPage(),
-                'nextpage' => $this->nextPageUrl(),
-                'prevpage' => $this->previousPageUrl(),
-            ],
         ];
     }
 }
