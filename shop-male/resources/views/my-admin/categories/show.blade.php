@@ -18,11 +18,8 @@
                     <tr>
                         <td>{{ $category->id }}</td>
                         <td>{{ $category->name }}</td>
-                        @if ($category->image) 
-                        <td><img src="{{ showImage($category->image, 'categories') }}" alt="" style="width: 100px; height: 100px;"></td> 
-                        @else
-                        <td>No Image</td>
-                        @endif
+                        <td><img src="{{ showImage('categories',$image) }}" alt="" style="width: 100px; height: 100px;"></td> 
+                        
                     </tr>
                     @foreach ($products as $product)
                         <td>&ensp;</td>

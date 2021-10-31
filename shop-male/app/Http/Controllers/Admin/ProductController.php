@@ -174,8 +174,9 @@ class ProductController extends Controller
     
     public function update(Request $request, $id)
     {
+
         $product = $this->modelProduct->findOrFail($id);
-        //dd($product);
+        $oldimg = $product->images->toArray();
         $data = $request->only([
             'name',
             'user_id',
@@ -187,34 +188,142 @@ class ProductController extends Controller
             'sale_off',
             'is_public',
         ]);
-        //dd($data);
         
         $data['is_public'] = isset($data['is_public']) ? (int) $data['is_public'] : 0;
         $data['user_id'] = auth()->id();
-      //  dd($data);
+
+        $quantitySize = mergeTwoArray($request->arrsize, $request->arrquantity);
+        $quantity = sumOfArr($quantitySize);
+
+        $data['quantity'] = $quantity;
         
-        //try {
+        try {
             $product->update($data);
 
-            // $fileImg = $request->file('image');
-           
-            // if ($fileImg) {
-            //     $fileImg->store('public/products');
-            //     $data['image'] = $fileImg->hashName();
-            // }
+            // update table image 
+            $files = $request->file();
+            
+
+            foreach($files as $key => $file)
+            {
+                if($key == "image1")
+                {
+                    if(count($oldimg) > 0)
+                    {
+                        // update image 
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $old_image = $this->modelImage->findOrFail($oldimg[0]['id']);
+                        $old_image->update($data_image);
+                    }else {
+                        //store image
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $new_image = $this->modelImage->create($data_image); 
+
+                        // create table product image 
+                        $product->images()->save($new_image);
+                    }
+                }
+
+                if($key == "image2")
+                {
+                    if(count($oldimg) > 1)
+                    {
+                        // update image 
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $old_image = $this->modelImage->findOrFail($oldimg[1]['id']);
+                        $old_image->update($data_image);
+                        
+                    }else {
+                        //store image
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $new_image = $this->modelImage->create($data_image); 
+
+                        // create table product image 
+                        $product->images()->save($new_image);
+                    }
+                }
+
+                if($key == "image3")
+                {
+                    if(count($oldimg) > 2)
+                    {
+                        // update image 
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $old_image = $this->modelImage->findOrFail($oldimg[2]['id']);
+                        $old_image->update($data_image);
+                    }else {
+                        //store image
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $new_image = $this->modelImage->create($data_image); 
+                        // create table product image 
+                        $product->images()->save($new_image);
+                    }
+                }
+
+                if($key == "image4")
+                {
+                    if(count($oldimg) > 3)
+                    {
+                        // update image 
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $old_image = $this->modelImage->findOrFail($oldimg[3]['id']);
+                        $old_image->update($data_image);
+                    }else {
+                        //store image
+                        $image_name = encodeImage($file);
+                        $file->move('storage/products',$image_name);
+                        $data_image['name'] = $image_name;
+                        $new_image = $this->modelImage->create($data_image); 
+                        // create table product image 
+                        $product->images()->save($new_image);
+                    }
+                }
+            }
+                
+            // delete size of old product 
+            foreach($product->sizes as $key => $size)
+            {
+                $size->delete();
+                $product->sizes()->delete($size);
+            }
+
+            // update table size 
+            foreach($quantitySize as $key => $size)
+            {
+                $datasize['name'] = $key;
+                $datasize['quantity'] = (int)$size;
+                $newSize = $this->modelSize->create($datasize);
+
+                // create table productsize 
+                $product->sizes()->save($newSize);
+            }
+
             return redirect()
             ->route('admin.products.show', ['product' => $product->id])
             ->withSuccess('Edit product success!');
-            //dd($product);
             
-        // } catch (\Exception $e) {
+        } catch (\Exception $e) {
          
-        //     \Log::error($e);
+             \Log::error($e);
 
-        //     return redirect()
-        //         ->route('admin.products.index')
-        //         ->withError('Edit product failed. Please try again later!');
-        // } 
+             return redirect()
+                 ->route('admin.products.index')
+                 ->withError('Edit product failed. Please try again later!');
+         } 
     }
 
     

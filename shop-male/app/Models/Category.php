@@ -13,7 +13,7 @@ class Category extends Model
         'id',
         'name',
         'user_id',
-        'image',
+        'image_id',
         
     ];
 
@@ -24,9 +24,9 @@ class Category extends Model
     }
 
     /* n - n */
-    public function images()
+    public function image()
     {
-        return $this->hasOne(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
     public function products ()

@@ -5,13 +5,14 @@
 
             <i class="far fa-times-circle closesession" style="grid-collumn:2/3"></i>
           </div>
-      @endif
-      @if (session('error'))
-          <div class="alert alert-danger">
-            {{ session('error') }}
-            <i class="far fa-times-circle closesession" style="grid-collumn:2/3"></i>
-          </div>
-      @endif
+    @endif
+    
+    @if (session('error'))
+        <div class="alert alert-danger">
+        {{ session('error') }}
+        <i class="far fa-times-circle closesession" style="grid-collumn:2/3"></i>
+        </div>
+    @endif
     <div class="row" >
         
         <div class="col-9" style="min-height: 70vh">
