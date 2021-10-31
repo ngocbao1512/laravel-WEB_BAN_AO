@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BrandController as AdminBrandController;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Client\BlogClientController as BlogClient;
+use App\Http\Controllers\Admin\Dashboard;
 /* client */
 
 /*
@@ -56,11 +57,7 @@ Route::get('/contact', function () {
 
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 
-    Route::get('/home-page', function () {
-        return view('my-admin.home-page', [
-            'user' => auth()->user()->name,
-            ]);
-    })->name('home-page');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::resource('products', AdminProductController::class);
 
@@ -84,3 +81,4 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 Route::resource('/blogclients',BlogClient::class)->only([
     'index','show'
 ]);
+

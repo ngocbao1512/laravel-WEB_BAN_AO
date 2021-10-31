@@ -29,7 +29,7 @@
     <div class="" id="home">
         <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
-                <a class="navbar-brand" href="{{route('admin.home-page')}}">
+                <a class="navbar-brand" href="{{route('admin.dashboard')}}">
                     <h1 class="tm-site-title mb-0">Admin Male Shop </h1>
                 </a>
                 <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
                         <li class="nav-item">
-                            <a class="nav-link dashboard" href="{{route('admin.home-page')}}">
+                            <a class="nav-link dashboard" href="{{route('admin.dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                                 <span class="sr-only">(current)</span>
                             </a>

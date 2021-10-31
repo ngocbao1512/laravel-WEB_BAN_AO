@@ -3,76 +3,103 @@
   <div class="container" style="margin-top: 30px">
     <div class="row">
       <div class="col-12 mx-auto">
-      <div class="float-center">
-              <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Information Product</p>
-            </div>
+        <div class="float-center">
+          <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Information Product</p>
+        </div>
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-          <div class="row tm-edit-product-row">
-            <div class="col-xl-6 col-lg-6 col-md-12">
-              <form action="" method="post" class="tm-edit-product-form">
+          <form action="" method="post" class="tm-edit-product-form">
+            <div class="row tm-edit-product-row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
                 <div class="form-group ">
-                <div class="row">
-                   <div class=" col-xs-12 col-sm-6">
-                   <label for="name"><b>Product Name</b></label>
-                    <p style="color: white;">{{ $product->name }}</p>
-                   </div>
-                   <div class=" col-xs-12 col-sm-6">
-                    <label for="brand"><b>Rate</b></label>&ensp;
-                   <span style="color:white;">{{ $product->rate }}
-                    @for ($i=0; $i<$product->rate; $i++) 
-                    <span class="far fa-star"></span> 
-                    @endfor </span>
-                   </div>
-                 </div>
-                </div>
-                <hr>
-                <div class="form-group ">
-                 <div class="row">
-                   <div class=" col-xs-12 col-sm-6">
-                    <label for="category"><b>Category</b></label>
-                    <p style="color: white;">{{ $product->category->name }}</p>
-                   </div>
-                   <div class=" col-xs-12 col-sm-6">
-                    <label for="brand"><b>Brand</b></label>
-                    <p style="color: white;">{{ $product->brand->name }}</p>
-                   </div>
-                 </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="form-group  col-xs-12 col-sm-6">
-                    <label for="price"><b>Price</b></label>
-                    <p style="color: white;">${{ $product->price }}</p>
-                  </div>
-                  <div class="form-group  col-xs-12 col-sm-6">
-                    <label for="sale_off"><b>Sale Of</b></label>
-                    <p style="color: white;">{{ $product->sale_off }}%</p>
+                  <div class="row">
+                    <div class=" col-xs-12 col-sm-6">
+                      <label for="name"><b>Product Name</b></label>
+                      <p style="color: white;">{{ $product->name }}</p>
+                    </div>
+                    <div class=" col-xs-12 col-sm-6">
+                      <label for="brand"><b>Rate</b></label>&ensp;
+                      <span style="color:white;">{{ $product->rate }}
+                        @for ($i=0; $i<$product->rate; $i++) 
+                          <span class="far fa-star">
+                          </span> 
+                        @endfor 
+                      </span>
+                    </div>
+                    <hr>
                   </div>
                 </div>
-                <hr>
+
+                {{-- collum 2 --}}
                 <div class="form-group ">
-                  <label for="description"><b>Description</b></label>
-                  <p style="color: white;">{{ $product->description }}</p>
+                  <div class="row">
+                    <div class=" col-xs-12 col-sm-6">
+                      <label for="category">
+                        <b>Category</b>
+                      </label>
+                      <p style="color: white;">
+                        {{ $product->category->name }}
+                      </p>
+                    </div>
+                    <div class=" col-xs-12 col-sm-6">
+                      <label for="brand">
+                        <b>Brand</b>
+                      </label>
+                      <p style="color: white;">
+                        {{ $product->brand->name }}
+                      </p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="form-group  col-xs-12 col-sm-6">
+                      <label for="price">
+                        <b>Price</b>
+                      </label>
+                      <p style="color: white;">
+                        ${{ $product->price }}
+                      </p>
+                    </div>
+                    <div class="form-group  col-xs-12 col-sm-6">
+                      <label for="sale_off"><b>Sale Of</b></label>
+                      <p style="color: white;">{{ $product->sale_off }}%</p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label for="description"><b>Description</b></label>
+                      <p style="color: white;">{{ $product->description }}</p>
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-6">
+                      <label for="quantity"><b>Quantity</b></label>
+                      <p style="color: white;">{{ $product->quantity }}</p>
+                    </div>
+
+                  </div>
                 </div>
-                
-            </div>
-            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-              <div class="tm-product-img-edit mx-auto">
-                @foreach ($product->images as $image)
-                <img src=" {{ showImage('products',$image->name) }}" style="width: 100%; height: 200%" alt="{{ $product->name}}" class="img-fluid d-block mx-auto">
-                @endforeach
+              </div>
+              {{-- image --}}
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                <div class="row" style="overflow-y: hidden; overflow-x: scroll;">
+                  @foreach ($product->images as $image)
+                    <div class="col-3">
+                      <img src=" {{ showImage('products',$image->name) }}" style="width: 100%; height: 100%" alt="{{ $product->name}}" class="img-fluid d-block">
+                    </div>
+                  @endforeach
+                </div>
               </div>
             </div>
-            <div class="col-12">
-              <a  href="{{ route('admin.products.index') }}" class="btn btn-primary btn-block text-uppercase" style="color:white">Go To List Products</a>
-            </div>
-            </form>
-          </div>
+            <div class="row tm-edit-product-row">
+              <a  href="{{ route('admin.products.index') }}" class="btn btn-primary btn-block text-uppercase" style="color:white">
+                Go To List Products
+              </a>
+            </div>             
+          </form>
         </div>
       </div>
     </div>
   </div>
 
-@include('partials.active-product');
+  @include('partials.active-product');
 
 </x-admin-lte>

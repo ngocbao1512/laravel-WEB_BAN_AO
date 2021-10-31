@@ -6,17 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Image;
 use App\Http\Requests\RequestCategory;
 
 class CategoryController extends Controller
 {
     protected $modelProduct;
     protected $modelCategory;
+    protected $modelImage;
     
-    public function __construct(Product $product, Category $category)
-    {//dd('ok');
+    public function __construct(Product $product, Category $category, Image $image)
+    {
         $this->modelProduct = $product;
         $this->modelCategory = $category;
+        $this->modelImage = $image;
     }
     /**
      * Display a listing of the resource.
@@ -63,8 +66,9 @@ class CategoryController extends Controller
             if ($fileImg) {
                 $image_name = encodeImage($fileImg);
                 $fileImg->move('storage/categories',$image_name);
-                $data['image'] = $image_name;
-
+                $dataimg['name'] = $image_name;
+                $newimg = $this->modelImage->create($dataimg);
+                $data['image_id'] = $newimg->id;
             }
  
             $category = $this->modelCategory->create($data);
@@ -73,14 +77,14 @@ class CategoryController extends Controller
             ->route('admin.categories.show', ['category' => $category->id])
             ->withSuccess('Add category success!');
             
-       } catch (\Exception $e) {
+        } catch (\Exception $e) {
          
             \Log::error($e);
 
             return redirect()
                 ->route('admin.products.index')
                 ->withError('Add category failed. Please try again later!');
-       } 
+       }  
     }
 
     /**
@@ -94,9 +98,12 @@ class CategoryController extends Controller
         $category = $this->modelCategory->findOrFail($id);
         $products = $category->products()->get();
 
+        $img = $this->modelImage->findOrFail($category->image_id);
+
         return view('my-admin.categories.show', [
             'category' => $category,
             'products' => $products,
+            'image' => $img->name
         ]);
     }
 
@@ -109,9 +116,11 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->modelCategory->findOrFail($id);
+        $img = $this->modelImage->findOrFail($category->image_id);
         
         return view('my-admin.categories.edit',[
             'category' => $category,
+            'image' => $img->name,
         ]);     
     }
 
@@ -130,7 +139,7 @@ class CategoryController extends Controller
             'name',
             'image'
         ]);
-        //dd($data);
+        //dd($request);
         $data['user_id'] = auth()->id();
         
         try {
@@ -139,12 +148,13 @@ class CategoryController extends Controller
             if ($fileImg) {
                 $image_name = encodeImage($fileImg);
                 $fileImg->move('storage/categories',$image_name);
-                $data['image'] = $image_name;
+                $data_image['image'] = $image_name;
+                $oldimg = $this->modelImage->findOrFail($category->image_id);
+                $oldimg->update($data_image);
 
             }
 
             $category->update($data);
-           
             return redirect()
             ->route('admin.categories.show', ['category' => $category->id])
             ->withSuccess('Add category success!');

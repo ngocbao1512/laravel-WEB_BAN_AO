@@ -12,13 +12,12 @@ class Image extends Model
     protected $fillable = [
         'id',
         'name',
-        'category_id'
     ];
 
 
-    public function category()
+    public function categories()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasMany(Category::class);
     }
 
     public function users()
@@ -39,10 +38,7 @@ class Image extends Model
         return $this->belongsToMany(Image::class, 'product_images');
     }
 
-    public function categories()
-    {
-        return $this->hasOne(Category::class);
-    }
+    
 
     public function brands()
     {
