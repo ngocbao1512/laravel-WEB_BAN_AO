@@ -9,7 +9,7 @@
                         <div class="col-xl-5 col-lg-7 col-md-8">
                             <div class="hero__text">
                                 <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
+                                <h2>Fall - Winter Collections 2021</h2>
                                 <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.</p>
                                 <a href="/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
                                 <div class="hero__social">
@@ -29,7 +29,7 @@
                         <div class="col-xl-5 col-lg-7 col-md-8">
                             <div class="hero__text">
                                 <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
+                                <h2>Fall - Winter Collections 2021</h2>
                                 <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering commitment to exceptional quality.</p>
                                 <a href="/shop" class="primary-btn">Shop now <span class="arrow_right"></span></a>
                                 <div class="hero__social">
@@ -54,10 +54,10 @@
                 <div class="col-lg-7 offset-lg-4">
                     <div class="banner__item">
                         <div class="banner__item__pic">
-                            <img src="/male-shop/img/banner/banner-1.jpg" alt="">
+                            <img src="storage/categories/2021-10-28NwsB5NND8DJwhOPxxK9LlwPg80RkwfZUwxzKKRAA.jpg" style="width: 500px; height: 500px" alt="Shirts">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Clothing Collections 2030</h2>
+                            <h2>Shirts</h2>
                             <a href="/shop">Shop now</a>
                         </div>
                     </div>
@@ -65,10 +65,10 @@
                 <div class="col-lg-5">
                     <div class="banner__item banner__item--middle">
                         <div class="banner__item__pic">
-                            <img src="/male-shop/img/banner/banner-2.jpg" alt="">
+                            <img src="storage/categories/2021-10-28caBgkEAZcbhhPl4R8fY2NdAU72YwPBLxcb96fmqH.jpg" style="width: 500px; height: 500px" alt="Pants">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Accessories</h2>
+                            <h2>Pants</h2>
                             <a href="/shop">Shop now</a>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                 <div class="col-lg-7">
                     <div class="banner__item banner__item--last">
                         <div class="banner__item__pic">
-                            <img src="/male-shop/img/banner/banner-3.jpg" alt="">
+                            <img src="storage/categories/2021-10-28nGyCsOHXuwxOwGy1ibdokH4SiWijpwChVNeS3Pa4.jpg" style="width: 500px; height: 500px" alt="Bags">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Shoes Spring 2030</h2>
+                            <h2>Bags</h2>
                             <a href="/shop">Shop now</a>
                         </div>
                     </div>
@@ -434,12 +434,12 @@
     <section class="categories spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                        <h2>Shirts <br /> <span>Bags</span> <br /> Pants</h2>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="categories__hot__deal">
                         <img src="/male-shop/img/product-sale.png" alt="">
                         <div class="hot__deal__sticker">
@@ -515,40 +515,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-1.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 16 February 2020</span>
-                            <h5>What Curling Irons Are The Best Ones</h5>
-                            <a href="/blog">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-2.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 21 February 2020</span>
-                            <h5>Eternity Bands Do Last Forever</h5>
-                            <a href="/blog">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="/male-shop/img/blog/blog-3.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="/male-shop/img/icon/calendar.png" alt=""> 28 February 2020</span>
-                            <h5>The Health Benefits Of Sunglasses</h5>
-                            <a href="/blog">Read More</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="root">
+
             </div>
         </div>
     </section>
     <!-- Latest Blog Section End -->
-
+@include('partials.get-data-for-homepage')
 </x-male-shop>

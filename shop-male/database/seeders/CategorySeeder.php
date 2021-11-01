@@ -16,18 +16,18 @@ class CategorySeeder extends Seeder
     {
         Category::truncate();
 
-        $data = [];
+    //     $data = [];
 
-        $faker = \Faker\Factory::create();
+    //     $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 5; $i++) {
-            $data[] = [
-                'name' => $faker->name,
-                'user_id' => rand(1, 3),
-            ];
-        }
+    //     for ($i = 0; $i < 5; $i++) {
+    //         $data[] = [
+    //             'name' => $faker->name,
+    //             'user_id' => rand(1, 3),
+    //         ];
+    //     }
 
-       Category::insert($data);
+    //    Category::insert($data);
         
     }
     

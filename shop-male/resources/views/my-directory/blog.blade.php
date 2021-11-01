@@ -44,8 +44,8 @@
                             created_at.textContent = data.created_at
                             const img = document.createElement('div')
                             img.setAttribute('class', 'blog__item__pic set-bg')
-                            img.setAttribute('data-setbg',data.image)
-                            const linkimg = data.image
+                            img.setAttribute('data-setbg',data.images)
+                            const linkimg = data.images
                             const str = "url("+linkimg+")"
                             img.style.backgroundImage = str
                             const blog__item__text = document.createElement('div')

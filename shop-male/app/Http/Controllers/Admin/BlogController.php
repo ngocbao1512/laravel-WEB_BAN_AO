@@ -61,6 +61,7 @@ class BlogController extends Controller
    
     public function store(Request $request)
     {
+        //dd(encodeImage($request->file('image')));
         $data_blog  = $request->only([
             'title',
             'content',
@@ -104,7 +105,7 @@ class BlogController extends Controller
                 
                 
             }
-
+            
             /* create table images */
             $file = $request->file('image');
             if ($file) {
@@ -120,8 +121,8 @@ class BlogController extends Controller
                 $this->modelBlogImage->create($data_blogimage);     
             }
             return redirect()
-                ->route('admin.blogs.create')
-                ->with('msg','add success');
+                ->route('admin.blogs.index')
+                ->with('msg','Add blog success!');
 
         }
         catch (\Exception $e){
@@ -224,8 +225,8 @@ class BlogController extends Controller
                 $this->modelBlogImage->create($data_blogimage);     
             }
             return redirect()
-                ->route('admin.blogs.create')
-                ->with('msg','update success');
+                ->route('admin.blogs.index')
+                ->with('msg','Update blog success');
 
         }
         catch (\Exception $e){

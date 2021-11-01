@@ -11,8 +11,8 @@
             reader.readAsDataURL(input.files[0]);
          }
      }
-
-    $("#patient_pic").on("change",function(){
+    
+     $("#patient_pic").on("change",function(){
         readURL(this, "#preview_image")
     });
 

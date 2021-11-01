@@ -22,7 +22,7 @@ class BlogResource extends JsonResource
             'created_at' => $this->created_at,
             'user_name' => $this->user->name,
             'tags' => TagResource::collection($this->tags),
-            'images' => showImage($this->images->first()->name,'blogs'),
+            'images' => showImage('blogs', $this->images->first()->name),
         ];
     }
 }
