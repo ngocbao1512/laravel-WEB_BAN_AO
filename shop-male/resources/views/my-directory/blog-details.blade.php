@@ -53,7 +53,7 @@
                 author[1].textContent = post.user_name
                 created_at.textContent = post.created_at
                 number_comment.textContent = Math.floor(Math.random() * 35) + " comments"
-                img.setAttribute('src',post.image)
+                img.setAttribute('src',post.images)
                 content.textContent = post.content
                 
                 console.log(post.tags[0].name)

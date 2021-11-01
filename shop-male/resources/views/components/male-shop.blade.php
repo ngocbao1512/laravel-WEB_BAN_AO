@@ -60,7 +60,7 @@
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
-    <header class="header">
+    <header class="header fixed-top">
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -103,7 +103,6 @@
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="/about">About Us</a></li>
-                                    <li><a href="/shop-details">Shop Details</a></li>
                                     <li><a href="/shop-cart">Shopping Cart</a></li>
                                     <li><a href="/checkout">Check Out</a></li>
                                     <li><a href="{{route('blogclients.show',['blogclient'=>'100'])}}">Blog Details</a></li>
@@ -218,6 +217,7 @@
     <script src="/male-shop/js/mixitup.min.js"></script>
     <script src="/male-shop/js/owl.carousel.min.js"></script>
     <script src="/male-shop/js/main.js"></script>
+    @yield('get-data-for-home-page')
 </body>
 
 </html>

@@ -16,7 +16,7 @@
         
         <div class="col-9" style="min-height: 70vh">
             <div class="float-center">
-                <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Add Product</p>
+                <p class="tm-block-title d-inline-block float-center" style="font-size: 30px">Add Blog</p>
             </div>
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                 <form action="{{route('admin.blogs.store')}}" method="POST" class="tm-edit-product-form" enctype="multipart/form-data">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                                 <div class="tm-product-img-dummy mx-auto">
-                                    <img id="preview_image" src="#" alt="" />
+                                    <img id="preview_image" src="#" alt="" style="max-width: 100%; height: 150px;"/>
                                     
                                 </div>
                                 

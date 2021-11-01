@@ -16,18 +16,18 @@ class BrandSeeder extends Seeder
     {
         Brand::truncate();
 
-        $data = [];
+    //     $data = [];
 
-        $faker = \Faker\Factory::create();
+    //     $faker = \Faker\Factory::create();
 
-        for ($i = 0; $i < 5; $i++) {
-            $data[] = [
-                'name' => $faker->name,
-                'user_id' => rand(1, 3),
-            ];
-        }
+    //     for ($i = 0; $i < 5; $i++) {
+    //         $data[] = [
+    //             'name' => $faker->name,
+    //             'user_id' => rand(1, 3),
+    //         ];
+    //     }
 
-       Brand::insert($data);
+    //    Brand::insert($data);
         
     }
 }

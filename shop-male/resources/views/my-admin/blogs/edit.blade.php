@@ -51,7 +51,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
                                 <div class="tm-product-img-dummy mx-auto">
                                     @foreach ($blog->images as $image)
-                                        <img id="preview_image" src="{{showBlogImage($image->name)}}" alt="" style="min-height: 50px;z-index: 1;"/>
+                                        <img id="preview_image" src="{{showBlogImage($image->name)}}" alt="" style="max-width: 100%; height: 150px;"/>
                                     @endforeach
                                 </div>
                                 

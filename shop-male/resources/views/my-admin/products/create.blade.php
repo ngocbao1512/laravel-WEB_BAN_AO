@@ -90,7 +90,6 @@
                       type="file"
                       name="image1"
                       id="patient_pic1"
-
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
                     />
                   </div>
@@ -105,9 +104,7 @@
                       type="file"
                       name="image2"
                       id="patient_pic2"
-
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-
                     />
                   </div>
                 </div>
@@ -136,7 +133,6 @@
                       name="image4"
                       id="patient_pic4"
                       class="btn btn-primary btn-block mx-auto " style="background-color : transparent;"
-                      class="btn btn-primary btn-block mx-auto upload-image" style="background-color : transparent;"
                     />
                   </div>
                 </div>

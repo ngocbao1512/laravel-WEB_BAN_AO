@@ -27,7 +27,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
               <div class="tm-product-img-dummy mx-auto">
-                <img id="preview_image" src="{{ showImage('categories',$image) }}" alt="" style="max-width: 100%; height: 150px;"/>
+              <img id="preview_image" src="{{ showImage('categories', $category->image) }}" alt="" style="max-width: 100%; height: 150px;"/>
               </div>
               <div class="input-group mb-3">
                 <button class="btn btn-primary click-upload-image" type="button">Upload Image</button>
